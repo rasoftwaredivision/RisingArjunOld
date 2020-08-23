@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.risingarjun.arjun",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.1.2",
+    "applicationType": "monolith",
+    "baseName": "RisingArjun",
+    "packageName": "com.risingarjun.arjun",
+    "packageFolder": "com/risingarjun/arjun",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mariadb",
+    "prodDatabaseType": "mariadb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MWQwOGNhMWMxZDhjMTE5MDBiNzc4MzlhN2YwNjM5ZGNlOTMwZDAyMWY1N2UwNTMxMjRkZTZkMDFkNzUxNzYyMjc3NzVhNzkxMWU2MDM1NTg2YTI5MTRmNTZkOTNlZDc1NmM4MDZiYTExOWY4MTJlZmQ3NzQ4NGY5ODBmNjI4ZmY=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "react",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": ["protractor"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "hi", "es"]
+  }
+}
