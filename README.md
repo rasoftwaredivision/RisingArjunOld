@@ -14,7 +14,7 @@ Go over https://www.youtube.com/watch?v=LERTahPqVjo for eclipse JHispter plugin 
 5. maven for build
 6. node
 7. Git client for code checkin/pull from Github
-8. Project uses Mariadb. So install it with user name and password set as root, root.
+8. Project uses Mariadb. So install it with user name and password set as root, root.Create database with name RisingArjun
    DB should be up and running on 3306.
 
 B)Additional Steps
