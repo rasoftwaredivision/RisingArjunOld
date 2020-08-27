@@ -9,7 +9,9 @@ A) Preconditions (Software to be installed):
    graphviz-2.38.msi for can be installed from
 
 https://www.softpedia.com/get/Others/Miscellaneous/Graphviz.shtml#download
-Go over https://www.youtube.com/watch?v=LERTahPqVjo for eclipse JHispter plugin installation and usage
+Go over https://www.youtube.com/watch?v=LERTahPqVjo for eclipse JHispter plugin installation and usage.
+Set environment variable GRAPHVIZ_HOT to point to dot.exe eg C:\Program Files (x86)\Graphviz2.38\bin\dot.exe
+Also update PATH variable to point to Graphviz bin folder eg C:\Program Files (x86)\Graphviz2.38\bin\
 
 5. maven for build
 6. node
