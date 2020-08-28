@@ -33,3 +33,7 @@ C) Deployment in Heroku
 
 1. Install Heroku client from https://devcenter.heroku.com/articles/heroku-cli#download-and-install
 2. Refer https://dashboard.heroku.com/apps/therisingarjun/deploy/heroku-git for using Heroku CLI
+   After installation run below commands
+   $ heroku login
+$ jhipster heroku
+   \$ heroku open

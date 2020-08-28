@@ -36,7 +36,7 @@
     "enableTranslation": true,
     "nativeLanguage": "en",
     "languages": ["en", "hi", "es"],
-    "herokuAppName": "rising-arjun",
+    "herokuAppName": "therisingarjun",
     "herokuDeployType": "git"
   }
 }
