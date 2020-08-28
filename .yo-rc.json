@@ -35,6 +35,8 @@
     "otherModules": [],
     "enableTranslation": true,
     "nativeLanguage": "en",
-    "languages": ["en", "hi", "es"]
+    "languages": ["en", "hi", "es"],
+    "herokuAppName": "rising-arjun",
+    "herokuDeployType": "git"
   }
 }

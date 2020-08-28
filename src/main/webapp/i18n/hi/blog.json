@@ -1,0 +1,24 @@
+{
+  "risingArjunApp": {
+    "blog": {
+      "home": {
+        "title": "Blogs",
+        "createLabel": "नया Blog बनाएँ",
+        "createOrEditLabel": "Blog बनाएँ या संपादित करें",
+        "notFound": "No Blog found"
+      },
+      "created": "एक नया Blog [identifier: {{ param }}] तैयार है",
+      "updated": "एक Blog [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Blog [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Blog [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Blog"
+      },
+      "name": "Name",
+      "handle": "Handle",
+      "user": "User"
+    }
+  }
+}

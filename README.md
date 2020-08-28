@@ -28,3 +28,8 @@ Refer below sites for creating dev environment
 2. https://www.jhipster.tech/creating-an-app/
 
 3) https://github.com/mraible/jhipster6-demo/blob/master/demo.adoc
+
+C) Deployment in Heroku
+
+1. Install Heroku client from https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+2. Refer https://dashboard.heroku.com/apps/therisingarjun/deploy/heroku-git for using Heroku CLI

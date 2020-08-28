@@ -1,0 +1,26 @@
+{
+  "risingArjunApp": {
+    "entry": {
+      "home": {
+        "title": "Entries",
+        "createLabel": "नया Entry बनाएँ",
+        "createOrEditLabel": "Entry बनाएँ या संपादित करें",
+        "notFound": "No Entry found"
+      },
+      "created": "एक नया Entry [identifier: {{ param }}] तैयार है",
+      "updated": "एक Entry [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Entry [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Entry [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Entry"
+      },
+      "title": "Title",
+      "content": "Content",
+      "date": "Date",
+      "blog": "Blog",
+      "tag": "Tag"
+    }
+  }
+}
