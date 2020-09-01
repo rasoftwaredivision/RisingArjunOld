@@ -1,0 +1,24 @@
+Users:
+Id, First Name, Last Name, mobileNo, emailId,DOB, Address,JoiningDate
+
+
+Students:
+Id, studentRegId,parentMobNo1, parentMobNo2, mobileNo, emailId,DOB, Address,JoiningDate
+
+Employee
+Id, empolyeeId, BGC, profile
+
+Teacher
+Id, empolyeeId, share, month
+
+CenterHead
+Id, empolyeeId, share, month
+
+StudentTeachingClass
+Id, studentRegId, teacherEmpId, SubjectId,month
+
+StudentFee
+Id,  studentRegId, subjectId, Fee, month, status
+
+SalaryPayment
+Id, paid, date, transactionId, remarks
