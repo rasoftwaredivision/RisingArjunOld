@@ -18,8 +18,8 @@ Also update PATH variable to point to Graphviz bin folder eg C:\Program Files (x
 7. Git client for code checkin/pull from Github
 8. Project uses Mariadb. So install it with user name and password set as root, root.Create database with name RisingArjun
    DB should be up and running on 3306.
-   
-   MariaDb after installation can be manipulated using the inbuilt commandline automatically installed on windows. Additionally a GUI like DBeaver can be used to make the process    of managing the database simpler.
+
+   MariaDb after installation can be manipulated using the inbuilt commandline automatically installed on windows. Additionally a GUI like DBeaver can be used to make the process of managing the database simpler.
 
 B)Additional Steps
 
