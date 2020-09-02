@@ -1,5 +1,5 @@
 1. accountStatus:
-id, StatusCode, Status
+id, statusCode, status
 1, IN, INACTIVE
 2, AT, ACTIVE
 
@@ -28,7 +28,7 @@ id, sourceCode, source
 
 7. students:
 id, userId, studentRegId, course,parentMobNo1, parentMobNo2, parentEmailId, studentStatus,leavingReason, infoSource
-100, 10, RA_GGN_2019-20-001,   X, 	9999, 8888, 		abc2@gmail.com, LF,	 DF,		FR
+100, 10, RA_GGN_2019-20-001,   X, 	9999,    8888, 		abc2@gmail.com, LF,	 DF,		FR
 
 8. subjects:
 id, subjectCode, subjectTitle
@@ -56,7 +56,7 @@ Id, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, h
 1,	200,	300,	600,	700,	800,	1000,	1100,		4%,	7%,		9%,	10%,	200,	2020-21
 
 14. scholarsip
-Id, minMarks, scholarship, sessionId
+Id, minMarks, scholarship,    sessionId
 1,   85%,	2%,		2020-21
 2,   90%,	3%,		2020-21
 3,   95%,	4%,		2020-21
@@ -64,7 +64,8 @@ Id, minMarks, scholarship, sessionId
 15. studentFee:
 Id, studentRegId, subjectCode, fee, feeCorrection, month, sessionId, teacherId, status
 1,  RA_GGN_2019-20-001,MA,   2200,   null, 	   JAN,    2020-21,   GGN002,	  NotPaid
-2,  RA_GGN_2019-20-001,PH,   2200,   -300, 	   JAN,    2020-21,   GGN003,	  Paid
+2,  RA_GGN_2019-20-001,PH,   2300,   -300, 	   JAN,    2020-21,   GGN003,	  Paid
+3,  RA_GGN_2019-20-002,PH,   2500,   400, 	   FEB,    2020-21,   GGN003,	  Paid
 
 16. employee:
 id, userId, empolyeeId, BGC
@@ -76,16 +77,8 @@ Id, empolyeeId, expertise
 
 18. teacherShare:
 Id, teacherId, share%, plannedClasses, actualClasses, correction, subjectId, course, month,  sessionId
-1, GGN002,	  80%,		17,    	17,   		MA,	    X,	   JAN,  2020-21
+1, GGN002,	  80%,		17,    	17,   		null,		MA,	X,    JAN,  2020-21
 
-20. CenterHead
-Id, empolyeeId, share, month
-
-StudentTeachingClass
-Id, studentRegId, teacherEmpId, SubjectId,month
-
-StudentFee
-Id,  studentRegId, subjectId, Fee, month, status
-
-SalaryPayment
-Id, paid, date, transactionId, remarks
+19. salaryPayment
+Id, employeeId, paid, 	date, 	transactionId, 	remarks
+1.  GGN002,	13000,  31-Aug-20, IMPS00002,	3600 balance
