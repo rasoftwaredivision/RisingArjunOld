@@ -1,17 +1,84 @@
-Users:
-Id, First Name, Last Name, mobileNo, emailId,DOB, Address,JoiningDate
+1. accountStatus:
+id, StatusCode, Status
+1, IN, INACTIVE
+2, AT, ACTIVE
 
+2. users:
+id, firstName, lastName, mobileNo, emailId, DOB, address,joiningDate, accountStatus
+10, Kunchit, Goel, 999999,abc@gmail.com, 07-07-90, Sect-4, Gurgaon, 03-03-19, IN
+12, Aniket, Khanchi,88888,abce@gmail.com, 07-07-89, Sect-3, Gurgaon, 03-04-19, AT
 
-Students:
-Id, studentRegId,parentMobNo1, parentMobNo2, mobileNo, emailId,DOB, Address,JoiningDate
+3. studentStatus:
+id, StatusCode, Status
+1, LF, Left
 
-Employee
-Id, empolyeeId, BGC, profile
+4. leavingReason
+id, reasonCode, reason
+1, DF, distanceFactor
 
-Teacher
-Id, empolyeeId, share, month
+5. courses:
+id, courseId, course
+1, X, Intermediate
 
-CenterHead
+6.infoSource:
+id, sourceCode, source
+1, PM,	Pamphlets
+2, BN,	Banners
+3, FR,	Friends
+
+7. students:
+id, userId, studentRegId, course,parentMobNo1, parentMobNo2, parentEmailId, studentStatus,leavingReason, infoSource
+100, 10, RA_GGN_2019-20-001,   X, 	9999, 8888, 		abc2@gmail.com, LF,	 DF,		FR
+
+8. subjects:
+id, subjectCode, subjectTitle
+1,  PH,		Physics
+2,  CH,		Chemistry
+3,  MA,		Mathematics
+4,  IM,		IIT-Mathematics
+
+9. session:
+id, sessionId, session
+1, 2020-21,	Academic Year 2020-21
+
+10. studentSubjects:
+id, studentRegId, subjectCode1, subjectCode2,subjectCode3,subjectCode4,subjectCode5,subjectCode6,subjectCode7,subjectCode8,courseId, month, sessionId
+1,   RA_GGN_2019-20-001,PH,		CH,	MA,	     IIT-Math,     null,	null,		null,	null,	    XI, 	JAN, 2020-21
+
+11. subjectBaseFee:
+id, courseId, baseFee, session
+1,   IX,	1850,	2020-21
+2,   X,		2150,	2020-21
+3,   XI,	2450,	2020-21
+
+12. discounts:
+Id, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, halfYearly, annually, sibling, referral,sessionId
+1,	200,	300,	600,	700,	800,	1000,	1100,		4%,	7%,		9%,	10%,	200,	2020-21
+
+14. scholarsip
+Id, minMarks, scholarship, sessionId
+1,   85%,	2%,		2020-21
+2,   90%,	3%,		2020-21
+3,   95%,	4%,		2020-21
+
+15. studentFee:
+Id, studentRegId, subjectCode, fee, feeCorrection, month, sessionId, teacherId, status
+1,  RA_GGN_2019-20-001,MA,   2200,   null, 	   JAN,    2020-21,   GGN002,	  NotPaid
+2,  RA_GGN_2019-20-001,PH,   2200,   -300, 	   JAN,    2020-21,   GGN003,	  Paid
+
+16. employee:
+id, userId, empolyeeId, BGC
+1, 12, GGN002,	CLEAR
+
+17. teacher:
+Id, empolyeeId, expertise
+1, GGN002,	Physics
+
+18. teacherShare:
+Id, teacherId, share%, plannedClasses, actualClasses, correction, subjectId, course, month,  sessionId
+1, GGN002,	  80%,		17,    	17,   		MA,	    X,	   JAN,  2020-21
+
+20. CenterHead
 Id, empolyeeId, share, month
 
 StudentTeachingClass
