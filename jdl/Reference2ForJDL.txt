@@ -1,28 +1,28 @@
-1. accountStatus:
+1. accountsStatus:
 id, statusCode, status
 1, IN, INACTIVE
 2, AT, ACTIVE
 
-2. user:
-id, firstName, lastName, mobileNo, emailId, 	DOB, 	address,	joiningDate, accountStatus
-10, Kunchit, 	Goel, 	999999,abc@gmail.com, 07-07-90, Sect-4 Gurgaon, 03-03-19, 	IN
-12, Aniket, 	Khanchi,88888,abce@gmail.com, 07-07-89, Sect-3 Gurgaon, 03-04-19, 	AT
+2. users:
+id, firstName, lastName, mobileNo, emailId, 	DOB, 	houseNo, streetNo,	city, 	state, 	pincode, joiningDate, accountStatus
+10, Kunchit, 	Goel, 	999999,abc@gmail.com, 07-07-90, T1-801,	Taksila heights,Gurgaon, Haryana, 122001, 03-03-19, 	IN
+12, Aniket, 	Khanchi,88888,abce@gmail.com, 07-07-89, T,	Taksila heights,Gurgaon, Haryana, 122001, 03-03-19, 	IN
 
-3. studentStatus:
+3. studentsStatus:
 id, StatusCode, Status
 1, LF, Left
 
-4. leavingReason
+4. leavingReasons:
 id, reasonCode, reason
 1, DF, distanceFactor
 2, HF, High Fee
 
-5. course:
+5. courses:
 id, courseId, 	course
 1,   X, 	Intermediate
 2,  CLAT, 	CLAT Entrance
 
-6.infoSource:
+6.infoSources:
 id, sourceCode, source
 1, PM,	Pamphlets
 2, BN,	Banners
@@ -32,22 +32,22 @@ id, sourceCode, source
 id, userId, studentRegId, course,parentMobNo1, parentMobNo2, parentEmailId, studentStatus,leavingReason, infoSource
 100, 10, RA_GGN_2019-20-001,   X, 	9999,    8888, 		abc2@gmail.com, LF,	 DF,		FR
 
-8. subject:
+8. subjects:
 id, subjectCode, subjectTitle
 1,  PH,		Physics
 2,  CH,		Chemistry
 3,  MA,		Mathematics
 4,  IM,		IIT-Mathematics
 
-9. session:
+9. sessions:
 id, sessionId, session
 1, 2020-21,	Academic Year 2020-21
 
-10. studentSubject:
+10. studentsSubjects:
 id, studentRegId, subjectCode1, subjectCode2,subjectCode3,subjectCode4,subjectCode5,subjectCode6,subjectCode7,subjectCode8,courseId, month, sessionId
-1,   RA_GGN_2019-20-001,PH,		CH,	MA,	     IIT-Math,     null,	null,		null,	null,	    XI, 	JAN, 2020-21
+1,  RA_GGN_2019-20-001,PH,		CH,	MA,	     IIT-Math,     null,	null,		null,	null,	    XI,      JAN, 2020-21
 
-11. subjectBaseFee:
+11. subjectsBaseFee:
 id, courseId, baseFee, session
 1,   IX,	1850,	2020-21
 2,   X,		2150,	2020-21
@@ -57,42 +57,54 @@ id, courseId, baseFee, session
 id, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, halfYearly, annually, sibling, referral,sessionId
 1,	200,	  300,	   600,	   700,	    800,   1000,    1100,    4%,	7%,		9%,	10%,	200,	2020-21
 
-14. scholarsip
+13. scholarsips:
 id, minMarks, scholarship,    sessionId
 1,   85%,	2%,		2020-21
 2,   90%,	3%,		2020-21
 3,   95%,	4%,		2020-21
 
-15. studentFee:
+14. studentsFee:
 id, studentRegId,      subjectCode, fee, feeCorrection, month, sessionId, teacherId, feeStatus
 1,  RA_GGN_2019-20-001,   MA,   2200,      null, 	 JAN,    2020-21,   GGN002,  NotPaid
 2,  RA_GGN_2019-20-001,   PH,   2300,      -300, 	 JAN,    2020-21,   GGN003,  Paid
 3,  RA_GGN_2019-20-002,   PH,   2500,      400, 	 FEB,    2020-21,   GGN003,  Paid
 
-16. employee:
-id, userId, empolyeeId, BGC
-1,   12,    GGN002,	CLEAR
+15. employees:
+id, userId, empolyeeId, jobNature,	BGC,		resume,			PAN,		accountNo,	bank,	ifsc
+1,   12,    GGN002,	PARTTIME,	CLEAR,		resumeAttached,		AHNPR08087,	121323,		SBI,	SBI83023
 
-17. teacher:
-id, empolyeeId, expertise
-1, GGN002,	Physics
+16. centers:
+id, centerCode, Location
+1,  GGN_SEC4,	Shop No 13, Sector 4, Gurgaon
+2,  GGN_SEC37C,	Shop No 13-14, Sector 37C, Gurgaon
+3,  DDN_SUM,	HNo 37/C, Suman Nagar, Dehradun
 
-18. teacherShare:
+17. centerHeads:
+id, empolyeeId, centerCode
+1, GGN003,	GGN_SEC4
+2, GGN004,	DDN_SUM
+
+18. teachers:
+id, empolyeeId, subjectCode1, subjectCode2, subjectCode3
+1, GGN002,	PH,		MA,		CH	
+
+19. teachersShare:
 id, teacherId, share%, plannedClasses, actualClasses, shareCorrection, subjectId, course, month,  sessionId
 1,   GGN002,	  80%,		17,    	15,   		null,		MA,	    X,    JAN,    2020-21
 
-19. salaryPayment
-id, employeeId, salary,       paid, 	unpaid,	date, 		transactionId, 	remarks
-1.  GGN002,	15000,	      13000,    2000,	31-Aug-20,      IMPS00002,	3600 balance
+18. salariesPayment:
+id, employeeId, salary,       paid, 	unpaid,	date, 		transactionId, mode,	remarks
+1.  GGN002,	15000,	      13000,    2000,	31-Aug-20,      IMPS00002,	NEFT,	200 balance
+2.  GGN002,	5000,	      5000,     0,	31-Aug-20,      IMPS00003,	Paytm,	paid
 
-20. operatingExpenses
+19. operatingExpenses:
 id, items, quantity,    rate, 	amount,	sum, date, transactionId, remarks
 
-21. fixAssetExpenses
+20. fixAssetExpenses:
 id, items, quantity,    rate, 	amount,	sum, date, transactionId, remarks
 
-22. marketingAssetExpenses
+21. marketingExpenses:
 id, items, quantity,    rate, 	amount,	sum, date, transactionId, remarks
 
-23. expenses
-id, operatingExpId,fixAssetExpId, marketingAssetExpId, total, date
+22. expenses:
+id, operatingExpId, fixAssetExpId, marketingExpId, total, date
