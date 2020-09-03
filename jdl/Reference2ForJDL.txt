@@ -82,5 +82,17 @@ id, teacherId, share%, plannedClasses, actualClasses, shareCorrection, subjectId
 1,   GGN002,	  80%,		17,    	15,   		null,		MA,	    X,    JAN,    2020-21
 
 19. salaryPayment
-id, employeeId, salary,       paid, 	date, 		transactionId, 	remarks
-1.  GGN002,	15000,	      13000,    31-Aug-20,      IMPS00002,	3600 balance
+id, employeeId, salary,       paid, 	unpaid,	date, 		transactionId, 	remarks
+1.  GGN002,	15000,	      13000,    2000,	31-Aug-20,      IMPS00002,	3600 balance
+
+20. operatingExpenses
+id, items, quantity,    rate, 	amount,	sum, date, transactionId, remarks
+
+21. fixAssetExpenses
+id, items, quantity,    rate, 	amount,	sum, date, transactionId, remarks
+
+22. marketingAssetExpenses
+id, items, quantity,    rate, 	amount,	sum, date, transactionId, remarks
+
+23. expenses
+id, operatingExpId,fixAssetExpId, marketingAssetExpId, total, date
