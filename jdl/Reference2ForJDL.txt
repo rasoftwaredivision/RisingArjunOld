@@ -97,14 +97,13 @@ id, employeeId, salary,       paid, 	unpaid,	date, 		transactionId, mode,	remark
 1.  GGN002,	15000,	      13000,    2000,	31-Aug-20,      IMPS00002,	NEFT,	200 balance
 2.  GGN002,	5000,	      5000,     0,	31-Aug-20,      IMPS00003,	Paytm,	paid
 
-19. operatingExpenses:
-id, items, quantity,    rate, 	amount,	sum, date, transactionId, remarks
+19. expensesTypes:
+id, expenceTypeId, Detail
+1. OPERATING, Operating expenses
+2. MARKETING, Marketing expenses
+3. FIXASSET, Fix assets
 
-20. fixAssetExpenses:
-id, items, quantity,    rate, 	amount,	sum, date, transactionId, remarks
-
-21. marketingExpenses:
-id, items, quantity,    rate, 	amount,	sum, date, transactionId, remarks
-
-22. expenses:
-id, operatingExpId, fixAssetExpId, marketingExpId, total, date
+20. expenses:
+id, item, quantity,    rate, 	laborCost,  otherExpense, total, date, transactionId, mode, 	  type, 	   bill, 	   remarks
+1, Chairs,   10,        400,       200,		1000,	   5200  07-07-20, IMPS68676, Debit Card, FIXASSET,  billAttachment, purchased from Sadar bazar
+2, Signboard, 5,       10000,      3000,	2000,	  65000  10-07-20, IMPS67676, Debit Card, MARKETING, billAttachment, purchased from xyz shop
