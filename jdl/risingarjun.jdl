@@ -1,0 +1,106 @@
+entity AccountStatus{
+	statusCode String
+	status String
+}
+//notnull
+
+entity User{
+	id Integer
+	firstName String required
+	lastName String required
+	mobileNo String required
+	emailId String required
+	dob Date required
+	houseNo String required
+	streetNo Integer	
+	city String required
+	state String 	required
+	pincode String 
+	joiningDate Date required
+	  	
+}
+
+//
+
+entity StudentsStatus{
+	statusCode String 
+	status String
+}
+
+entity LeavingReasons{
+	reasonCode String 
+	reason String
+}
+
+entity Courses{
+	courseId String 	
+	course String
+}
+
+entity InfoSources{
+	sourceCode String
+	source String
+}
+
+
+entity Students{
+	id Integer 
+	studentRegId String 
+	course String 
+	parentMobNo1 String 
+	parentMobNo2 String
+	parentEmailId String 
+}
+
+entity Subjects{
+	subjectCode String 
+	subjectTitle String
+}
+entity Sessions{
+	sessionId String 
+	session String
+}
+
+entity StudentsSubjects{
+	id String
+	month String 
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH,HINDI
+}
+
+relationship OneToMany{
+	AccountStatus{userStatus} to User{user(statusCode)}
+	StudentsStatus{studentstatus} to Students{status(statusCode)}
+	LeavingReasons{leavingreason} to Students{reason(reasonCode)}
+	InfoSources{infosource} to Students{source(sourceCode)}
+	
+}
+
+relationship OneToOne{
+	Students{student} to User{studentID(id)}
+	Students{student} to StudentsSubjects{redId(studentRegId)}
+	
+}
+
+relationship ManyToMany{
+	Subjects{subjects} to StudentsSubjects{subjectcodes(subjectCode)}
+}
+
+// defining multiple OneToMany relationships with comments
+
+
+// =======
+// Options
+// =======
+
+// Set pagination options
+
+
+dto * with mapstruct
+
+// Set service options to all 
+service all with serviceImpl 
+// Set an angular suffix
+angularSuffix * with mySuffix
