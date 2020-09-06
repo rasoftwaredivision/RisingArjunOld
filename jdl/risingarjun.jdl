@@ -30,14 +30,14 @@ entity Users{
 	lastName String required
 	mobileNo String required
 	emailId String required
-	dob Date required
+	dob LocalDate required
     photo ImageBlob 
 	houseNo String required
 	streetNo Integer	
 	city String required
 	state String 	required
 	pincode String 
-	joiningDate Date required
+	joiningDate LocalDate required
     accountStatus AccountStatus
 	  	
 }
@@ -86,7 +86,7 @@ entity Subjects{
 	subjectCode String required
 	subjectTitle String required
 }
-entity Sessions{
+entity Session{
 	id Integer
 	sessionId String required unique
 	session String required
@@ -186,7 +186,7 @@ id Integer
  salary Integer required min(0)   
  paid Integer 	min(0) required
  unpaid Integer	min(0) required
- date Date 	required	
+ date LocalDate 	required	
  transactionId String required
  mode String required
  remarks String
@@ -212,7 +212,7 @@ rate Integer
 laborCost Integer  
 otherExpense Integer 
 total Integer required
-date Date 
+date LocalDate 
 transactionId String required  
 mode Mode 	  
 type Type 	   
@@ -248,7 +248,7 @@ entity StudentScore{
 id Integer required
 answer Integer	required
 score Integer required
-date Date
+date LocalDate
 }
 
 
@@ -261,8 +261,8 @@ enum Language {
 relationship OneToOne{
 	Students{student(userId)} to Users{studentID}
     StudentsSubjects{id(studentRegId)} to Students{student}
-     Discounts{discount(sessionId)} to Sessions{session}
-     Scholarships{scholarship(sessionId)} to Sessions{session}
+     Discounts{discount(sessionId)} to Session{session}
+     Scholarships{scholarship(sessionId)} to Session{session}
      StudentFees{fees(studentRegId)} to Students{student}
      Employees{employee(userId)} to Users{studentID}
      CenterHead{center(centerCode)} to Centers{centerhead}
@@ -284,14 +284,14 @@ relationship ManyToOne{
 	Users{as(roleId)} to Roles{userrole}
     Students{course(course)} to Courses{studentcourse}
     StudentsSubjects{sub(courseId)} to Courses{studentcourse}
-    StudentsSubjects{sub(sessionId)} to Sessions{studentsession}
-    SubjectsBaseFee{fee(session)} to Sessions{feesession}
+    StudentsSubjects{sub(sessionId)} to Session{studentsession}
+    SubjectsBaseFee{fee(session)} to Session{feesession}
     StudentFees{fees(subjectCode)} to Subjects{studentsubject}
-    StudentFees{fees(sessionId)} to Sessions{studentsession}
+    StudentFees{fees(sessionId)} to Session{studentsession}
     StudentFees{fees(teacherid)} to Teachers{teacherid}
     TeachersShare{teacher(subjectCode)} to Subjects{studentsubject}
     TeachersShare{teacher(course)} to Courses{studentcourse}
-    TeachersShare{teacher(sessionId)} to Sessions{studentsession}
+    TeachersShare{teacher(sessionId)} to Session{studentsession}
     Chapters{chapter(subjectCode)} to Subjects{studentsubject}
     Chapters{chapter(courseId)} to Courses{studentcourse}
     Questions{question(courseId)} to Courses{studentcourse}
