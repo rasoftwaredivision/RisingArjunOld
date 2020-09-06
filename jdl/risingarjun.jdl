@@ -1,92 +1,307 @@
-entity AccountStatus{
-	statusCode String
-	status String
-}
-//notnull
 
-entity User{
+
+enum AccountStatus{
+	INACTIVE, ACTIVE
+}
+
+entity Roles{
+id Integer unique
+roleId String required		
+roleDetail String required
+}
+
+entity Features{
+id Integer unique	
+featureId String required
+featureDetail String required
+}
+
+entity RoleAccess{
+id Integer unique	
+roleId String required		
+featureIds String required
+}
+
+
+entity Users{
 	id Integer
+    userId Integer unique
 	firstName String required
 	lastName String required
 	mobileNo String required
 	emailId String required
-	dob Date required
+	dob LocalDate required
+    photo ImageBlob 
 	houseNo String required
 	streetNo Integer	
 	city String required
 	state String 	required
 	pincode String 
-	joiningDate Date required
+	joiningDate LocalDate required
+    accountStatus AccountStatus
 	  	
 }
 
-//
-
-entity StudentsStatus{
-	statusCode String 
-	status String
+entity UserLoginDetails{
+id Integer unique 
+userId String required unique
+password String required
 }
 
-entity LeavingReasons{
-	reasonCode String 
-	reason String
+enum StudentStatus{
+GRADUATED, JOINED, LEFT
+}
+
+enum LeavingReasons{
+	DISTANCEFACTOR, UNHAPPYPHYSICS, UNHAPPYMATHS, UNHAPPYBIO, UNHAPPYCHEMISTRY, UNHAPPYMANAGEMENT, HIGHFEES, CLASSESOVERLAP, COURSECOMPLETED, BREAKEXAM, BREAKHOLIDAY, PERSONALREASON
 }
 
 entity Courses{
-	courseId String 	
-	course String
+	id Integer unique
+	courseId String required	
+	course String required
 }
 
-entity InfoSources{
-	sourceCode String
-	source String
+enum InfoSources{
+	LOCATIONDIRECTLY, FRIENDS, BANNER, INTERNET, PAMPHLET, NEWSPAPER
 }
 
 
 entity Students{
 	id Integer 
-	studentRegId String 
-	course String 
+    /** 
+    *DON'T HAVE ANY IDEA ABOUT REGISTRATION FORM
+    */
+	studentRegId String required unique
 	parentMobNo1 String 
 	parentMobNo2 String
 	parentEmailId String 
+    studentStatus StudentStatus
+    leavingReason LeavingReasons 
+    infoSource InfoSources
 }
 
 entity Subjects{
-	subjectCode String 
-	subjectTitle String
+	id Integer unique required
+	subjectCode String required
+	subjectTitle String required
 }
-entity Sessions{
-	sessionId String 
-	session String
+entity Session{
+	id Integer
+	sessionId String required unique
+	session String required
 }
 
 entity StudentsSubjects{
-	id String
-	month String 
+	id Integer 
+    month String required
 }
+
+entity SubjectsBaseFee{
+id Integer 
+courseId String required unique 
+baseFee Integer 
+
+}
+
+entity Discounts{
+id Integer required unique 
+subject2 Integer 
+subject3 Integer
+subject4 Integer
+subject5 Integer
+subject6 Integer
+subject7 Integer
+subject8 Integer
+quarterly Integer 
+halfYearly Integer
+annually Integer
+sibling Boolean
+referral Boolean
+}
+
+entity Scholarships{
+id Integer required unique
+minMarks Integer
+scholarship Integer   
+}
+
+enum FeeStatus{
+PAID, NOTPAID
+}
+
+entity StudentFees{
+id Integer 
+fee Integer 
+feeCorrection String 
+month String
+feeStatus FeeStatus
+}
+enum JobNature{
+PARTTIME, FULLTIME
+}
+enum BGC{
+CLEAR, NOTCLEAR
+}
+
+entity Employees{
+id Integer 
+empolyeeId Integer required unique
+jobNature JobNature	
+bgc BGC
+/**don't have any idea how to attach resume here*/		
+pan String required
+accountNo String required	
+bank String required	
+ifsc String required
+}
+
+entity Centers{
+id Integer required unique 
+centerCode String required 
+location String required
+}
+
+entity CenterHead{
+id Integer 
+}
+
+entity Teachers{
+id Integer
+teacherid String required unique
+
+}
+
+entity TeachersShare{
+id Integer 
+share Integer required max(100) 
+plannedClasses Integer required
+actualClasses Integer required
+shareCorrection String
+month String 
+}
+
+entity SalariesPayment{
+id Integer 
+ salary Integer required min(0)   
+ paid Integer 	min(0) required
+ unpaid Integer	min(0) required
+ date LocalDate 	required	
+ transactionId String required
+ mode String required
+ remarks String
+}
+
+entity ExpensesType{
+id Integer
+expenceTypeId String required unique 
+detail String
+}
+enum Mode{
+DEBITCARD, NETBANKING
+}
+enum Type{
+FIXASSET, MARKETTING
+}
+
+entity Expenses{
+id Integer 
+item String 
+quantity Integer    
+rate Integer 	
+laborCost Integer  
+otherExpense Integer 
+total Integer required
+date LocalDate 
+transactionId String required  
+mode Mode 	  
+type Type 	   
+bill String 	   
+remarks String
+}
+
+entity Chapters{
+id Integer	
+chapterId String required	
+chapterTitle String
+}
+
+entity QuestionLevel{
+id Integer
+levelId String required	
+detail String
+}
+
+entity Questions{
+questionid String required unique 
+question TextBlob	
+option1 String 	
+option2 String	
+option3 String	
+option4 String 	
+key String 	
+marks Integer	
+negativeMarks Integer
+}
+
+entity StudentScore{
+id Integer required
+answer Integer	required
+score Integer required
+date LocalDate
+}
+
 
 enum Language {
-    FRENCH, ENGLISH, SPANISH,HINDI
+    FRENCH, ENGLISH, SPANISH, HINDI
 }
 
-relationship OneToMany{
-	AccountStatus{userStatus} to User{user(statusCode)}
-	StudentsStatus{studentstatus} to Students{status(statusCode)}
-	LeavingReasons{leavingreason} to Students{reason(reasonCode)}
-	InfoSources{infosource} to Students{source(sourceCode)}
-	
-}
+
 
 relationship OneToOne{
-	Students{student} to User{studentID(id)}
-	Students{student} to StudentsSubjects{redId(studentRegId)}
+	Students{student(userId)} to Users{studentID}
+    StudentsSubjects{id(studentRegId)} to Students{student}
+     Discounts{discount(sessionId)} to Session{session}
+     Scholarships{scholarship(sessionId)} to Session{session}
+     StudentFees{fees(studentRegId)} to Students{student}
+     Employees{employee(userId)} to Users{studentID}
+     CenterHead{center(centerCode)} to Centers{centerhead}
+     CenterHead{center(empolyeeId)} to Employees{employid}
+      Teachers{teacher(empolyeeId)} to Employees{employid}
+    TeachersShare{teacher(teacherid)} to Teachers{teacherid}
+     SalariesPayment{salary(empolyeeId)} to  Employees{employid}
+      StudentScore{score(studentRegId)} to Students{student}
+	
 	
 }
 
 relationship ManyToMany{
-	Subjects{subjects} to StudentsSubjects{subjectcodes(subjectCode)}
+	StudentsSubjects{sub(subjectTitle)} to Subjects{studentsubject}
+    Teachers{teacher(subjectCode)} to Subjects{studentsubject}
 }
+
+relationship ManyToOne{
+	Users{as(roleId)} to Roles{userrole}
+    Students{course(course)} to Courses{studentcourse}
+    StudentsSubjects{sub(courseId)} to Courses{studentcourse}
+    StudentsSubjects{sub(sessionId)} to Session{studentsession}
+    SubjectsBaseFee{fee(session)} to Session{feesession}
+    StudentFees{fees(subjectCode)} to Subjects{studentsubject}
+    StudentFees{fees(sessionId)} to Session{studentsession}
+    StudentFees{fees(teacherid)} to Teachers{teacherid}
+    TeachersShare{teacher(subjectCode)} to Subjects{studentsubject}
+    TeachersShare{teacher(course)} to Courses{studentcourse}
+    TeachersShare{teacher(sessionId)} to Session{studentsession}
+    Chapters{chapter(subjectCode)} to Subjects{studentsubject}
+    Chapters{chapter(courseId)} to Courses{studentcourse}
+    Questions{question(courseId)} to Courses{studentcourse}
+    Questions{question(subjectCode)} to Subjects{studentsubject}
+    Questions{question(chapterId)} to Chapters{chapterid}
+    Questions{question(levelId)} to QuestionLevel{levelid}
+     StudentScore{score(questionid)} to Questions{id}
+}
+
+
 
 // defining multiple OneToMany relationships with comments
 
