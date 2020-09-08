@@ -124,7 +124,6 @@ id, courseId, 	course
 2,  CLAT, 	CLAT Entrance
 */
 entity Courses{
-	id Integer unique
 	courseId String required	
 	course String required
 }
@@ -185,8 +184,8 @@ id, studentRegId, subjectCode1, subjectCode2,subjectCode3,subjectCode4,subjectCo
 1,  RA_GGN_2019-20-001,PH,		CH,	MA,	     IIT-Math,     null,	null,		null,	null,	    XI,      JAN, 2020-21
 */
 entity StudentsSubjects{
-	id Integer 
-    	month String required
+	
+    month String required
 }
 
 /*
@@ -197,7 +196,6 @@ id, courseId, baseFee, AcadSession
 3,   XI,	2450,	2020-21
 */
 entity SubjectsBaseFee{
-	id Integer 
 	courseId String required unique 
 	baseFee Integer 
 }
@@ -208,7 +206,6 @@ id, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, h
 1,	200,	  300,	   600,	   700,	    800,   1000,    1100,    4%,	7%,		9%,	10%,	200,	2020-21
 */
 entity Discounts{
-	id Integer required unique 
 	subject2 Integer 
 	subject3 Integer
 	subject4 Integer
@@ -225,20 +222,17 @@ entity Discounts{
 
 /*
 14. scholarsips:
-id, minMarks, scholarship,    AcadSessionId
+id, minMarks, scholarship%,    AcadSessionId
 1,   85%,	2%,		2020-21
 2,   90%,	3%,		2020-21
 3,   95%,	4%,		2020-21
 */
 entity Scholarships{
-	id Integer required unique
+	
 	minMarks Integer
-	scholarship Integer   
+	scholarshippercent Integer   
 }
 
-enum FeeStatus{
-	PAID, NOTPAID
-}
 
 /*
 15. studentsFee:
@@ -248,29 +242,26 @@ id, studentRegId,      subjectCode, fee, feeCorrection, month, AcadSessionId, te
 3,  RA_GGN_2019-20-002,   PH,   2500,      400, 	 FEB,    2020-21,   GGN003,  Paid
 */
 entity StudentFees{
-	id Integer 
 	fee Integer 
 	feeCorrection String 
 	month String
-	feeStatus FeeStatus
+	feeStatus Boolean
 }
 enum JobNature{
 	PARTTIME, FULLTIME
 }
-enum BGC{
-	CLEAR, NOTCLEAR
-}
+
 /*
 16. employees:
 id, userId, empolyeeId, jobNature,	BGC,		resume,			PAN,		accountNo,	bank,	ifsc
 1,   12,    GGN002,	PARTTIME,	CLEAR,		resumeAttached,		AHNPR08087,	121323,		SBI,	SBI83023
 */
 entity Employees{
-	id Integer 
-	empolyeeId Integer required unique
+	
+	empolyeeId String required unique
 	jobNature JobNature	
-	bgc BGC
-	/**don't have any idea how to attach resume here*/		
+	bgc Boolean
+	resume ImageBlob	
 	pan String required
 	accountNo String required	
 	bank String required	
@@ -278,15 +269,19 @@ entity Employees{
 }
 /*
 17. centers:
-id, centerCode, Location
+id, centerhead,centerCode, streetno,city,state,pincode
 1,  GGN_SEC4,	Shop No 13, Sector 4, Gurgaon
 2,  GGN_SEC37C,	Shop No 13-14, Sector 37C, Gurgaon
 3,  DDN_SUM,	HNo 37/C, Suman Nagar, Dehradun
 */
 entity Centers{
-	id Integer required unique 
-	centerCode String required 
-	location String required
+
+	centerCode String required
+	streetNo Integer	
+	city String required
+	state String 	required
+	pincode String 
+
 }
 /*
 18. centerHeads:
@@ -294,18 +289,18 @@ id, empolyeeId, centerCode
 1, GGN003,	GGN_SEC4
 2, GGN004,	DDN_SUM
 */
-entity CenterHead{
+/*entity CenterHead{
 	id Integer 
 }
+*/
 
 /*
 19. teachers:
-id, empolyeeId, subjectCode1, subjectCode2, subjectCode3
+id, empolyeeId, subjectCode1, subjectCode2, subjectCode3,courseId
 1, GGN002,	PH,		MA,		CH	
 */
 entity Teachers{
-	id Integer
-	teacherid String required unique
+	
 }
 /*
 20. teachersShare:
@@ -313,7 +308,7 @@ id, teacherId, share%, plannedClasses, actualClasses, shareCorrection, subjectId
 1,   GGN002,	  80%,		17,    	15,   		null,		MA,	    X,    JAN,    2020-21
 */
 entity TeachersShare{
-	id Integer 
+	
 	share Integer required max(100) 
 	plannedClasses Integer required
 	actualClasses Integer required
@@ -327,14 +322,17 @@ id, employeeId, salary,       paid, 	unpaid,	date, 		transactionId, mode,	remark
 1.  GGN002,	15000,	      13000,    2000,	31-Aug-20,      IMPS00002,	NEFT,	200 balance
 2.  GGN002,	5000,	      5000,     0,	31-Aug-20,      IMPS00003,	Paytm,	paid
 */
+
+enum Mode{
+	NEFT, UPI, CASH, DEBITCARD, NETBANKING, OTHERS
+}
 entity SalariesPayment{
-	id Integer 
 	salary Integer required min(0)   
 	paid Integer 	min(0) required
 	unpaid Integer	min(0) required
 	date LocalDate 	required	
 	transactionId String required
-	mode String required
+	mode Mode
 	remarks String
 }
 /*
@@ -344,17 +342,18 @@ id, expenceTypeId, Detail
 2. MARKETING, Marketing expenses
 3. FIXASSET, Fix assets
 */
+
+enum Type{
+	OPERATING, MARKETING, FIXASSET, 
+}
+
 entity ExpensesType{
-	id Integer
-	expenceTypeId String required unique 
+	
+	expenceTypeId Type
 	detail String
 }
-enum Mode{
-	DEBITCARD, NETBANKING
-}
-enum Type{
-	FIXASSET, MARKETTING
-}
+
+
 
 /*
 23. expenses:
@@ -363,7 +362,7 @@ id, item, quantity,    rate, 	laborCost,  otherExpense, total, date, transaction
 2, Signboard, 5,       10000,      3000,	2000,	  65000  10-07-20, IMPS67676, Debit Card, MARKETING, billAttachment, purchased from xyz shop
 */
 entity Expenses{
-	id Integer 
+
 	item String 
 	quantity Integer    
 	rate Integer 	
@@ -372,12 +371,12 @@ entity Expenses{
 	total Integer required
 	date LocalDate 
 	transactionId String required  
-	mode Mode 	  
+	mode Mode	  
 	type Type 	   
 	bill String 	   
 	remarks String
 }
-
+///////////////////////////////////////DONE TILL NOW/////////////////////////////////////////////////
 /*
 24. chapters:
 id,	courseId,	subject,	chapterId,	chapterTitle
@@ -385,7 +384,7 @@ id,	courseId,	subject,	chapterId,	chapterTitle
 2, 	3,		MA,		ADD,		simple addition
 */
 entity Chapters{
-	id Integer	
+	
 	chapterId String required	
 	chapterTitle String
 }
@@ -433,23 +432,26 @@ entity StudentScore{
 
 relationship OneToOne{
 	Students{student(userId)} to Users{studentID}
-    	StudentsSubjects{id(studentRegId)} to Students{student}
-     	Discounts{discount(AcadSessionId)} to AcadSession{AcadSession}
-     	Scholarships{scholarship(AcadSessionId)} to AcadSession{AcadSession}
-     	StudentFees{fees(studentRegId)} to Students{student}
-     	Employees{employee(userId)} to Users{studentID}
-     	CenterHead{center(centerCode)} to Centers{centerhead}
-     	CenterHead{center(empolyeeId)} to Employees{employid}
-      	Teachers{teacher(empolyeeId)} to Employees{employid}
-    	TeachersShare{teacher(teacherid)} to Teachers{teacherid}
-     	SalariesPayment{salary(empolyeeId)} to  Employees{employid}
-      	StudentScore{score(studentRegId)} to Students{student}	
+	Employees{employee(userId)} to Users{studentID}
+	StudentScore{score(studentRegId)} to Students{student}	
+
+
+    	StudentsSubjects{registrationno(studentRegId)} to Students{student}
+     	Center{centerhead(employeeId)} to Employees
+    	StudentFees{registrationno(studentRegId)} to Students{student}
+     	Teachers{teacher(empolyeeId)} to Employees
+    	
+     	
+      	
 }
 
 relationship ManyToMany{
-	StudentsSubjects{sub(subjectCode)} to Subjects{studentsubject}
-    	Teachers{teacher(subjectCode)} to Subjects{studentsubject}
-    	RoleAccess{feature(featureId)} to Features{roleAcess}
+	StudentsSubjects{subjects(subjectCode)} to Subjects{studentsubject}
+    	Teachers{subjects(subjectCode)} to Subjects{teachers}
+    	Teachers{courses(courseId)} to Courses{teachers}
+    	StudentsSubjects{course(courseId)} to Courses{studentsubjects}
+
+    	RoleAccess{features(featureId)} to Features{roleAcess}
 }
 
 /*
@@ -457,16 +459,22 @@ TODO: how to show user full name but select only Id for UserPreferences
 */
 relationship ManyToOne{
     	UserPreferences{user(emailId)} to Users
-    	Students{course(course)} to Courses
-    	StudentsSubjects{sub(courseId)} to Courses
-    	StudentsSubjects{sub(AcadSessionId)} to AcadSession
-    	SubjectsBaseFee{fee(AcadSession)} to AcadSession
-    	StudentFees{fees(subjectCode)} to Subjects
-    	StudentFees{fees(AcadSessionId)} to AcadSession
-    	StudentFees{fees(teacherid)} to Teachers
-    	TeachersShare{teacher(subjectCode)} to Subjects
-    	TeachersShare{teacher(course)} to Courses
-    	TeachersShare{teacher(AcadSessionId)} to AcadSession
+    	
+    	Scholarships{session(AcadSessionId)} to AcadSession{AcadSession}
+		Discounts{session(AcadSessionId)} to AcadSession{AcadSession}
+    	StudentsSubjects{session(AcadSessionId)} to AcadSession
+    	SubjectsBaseFee{session(AcadSession)} to AcadSession
+    	StudentFees{subject(subjectCode)} to Subjects
+    	StudentFees{session(AcadSessionId)} to AcadSession
+    	StudentFees{teacherId(employeeId)} to Teachers
+    	TeachersShare{subject(subjectTitle)} to Subjects
+    	TeachersShare{course(courseId)} to Courses
+    	TeachersShare{session(AcadSessionId)} to AcadSession
+    	TeachersShare{teacher(employeeId)} to Employees
+    	SalariesPayment{Employee(empolyeeId)} to  Employees{employid}
+    	Expenses{IncurredBy{employeeId}} To Employees
+
+
     	Chapters{chapter(subjectCode)} to Subjects
     	Chapters{chapter(courseId)} to Courses
     	Questions{question(courseId)} to Courses
