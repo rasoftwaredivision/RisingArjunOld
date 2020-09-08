@@ -1,16 +1,32 @@
-enum Language {
-    FRENCH, ENGLISH, SPANISH, HINDI
-}
-
-enum AccountStatus{
-	ACTIVE, INACTIVE, LOCKED
-}
-
-enum Roles{
-	SUPERADMIN,ADMIN,CENTERHEAD,ACCOUNTANT,TEACHER,STUDENT,MANAGER
-}
-
 /*
+jhi_authority:
+name
+ROLE_SUPERADMIN
+ROLE_ADMIN
+ROLE_CENTERHEAD
+ROLE_ACCOUNTANT
+ROLE_TEACHER
+ROLE_STUDENT
+ROLE_MANAGER
+
+entity jhi_authority{
+	name String required
+}
+
+jhi_persistent_audit_event:
+event_id , principal , event_date , event_type 
+1, 	admin,	2020:08:12 12:45:03, AUTHENICATION_SECCESS
+
+entity jhi_persistent_audit_event{
+	event_id Integer required
+	principal String
+	event_date Date
+	event_type String
+}
+
+jhi_persistent_audit_evt_data:
+event_id, name, value
+
 3. features:
 id,	featureId,	featureDetail
 1,	STUREG,		student registration
@@ -29,7 +45,7 @@ roleId,		featureId,	create, read, update, delete
 ADMIN,		STUREG,		true,	true,	true,	false
 */
 entity RoleAccess{
-	roleId Roles required
+	roleId authority required
 	create Boolean
 	read Boolean
 	update Boolean
@@ -37,47 +53,53 @@ entity RoleAccess{
 }
 
 /*
-4. users:
-id, firstName, lastName, mobileNo, emailId, 	DOB, 	photo, houseNo, streetNo,	city, 	state, 	pincode, joiningDate, accountStatus, role
-10, Kunchit, 	Goel, 	999999,abc@gmail.com, 07-07-90, pic, T1-801,	Taksila heights,Gurgaon, Haryana, 122001, 03-03-19, 	IN,	     Teacher
-12, Aniket, 	Khanchi,88888,abce@gmail.com, 07-07-89, pic, T2,	Taksila heights,Gurgaon, Haryana, 122001, 03-03-19, 	IN,	     Student
+4. jhi_user:
+id, login, password_hash, first_name, last_name, email, image_url,activated,lang_key,activation_key,reset_key,created_by,created_date,reset_date,last_modified_by,last_modified_date
+1. kunchitGoyal, hsadksa,	Kunchit, Goel, 	abc@gmail.com, URL1,0, 		EN,	NULL,	NULL,	     ShivRaturi,2020:08:12 12:45:03,NULL,ShivRaturi,2020:08:12 12:45:03
+12, AniketKhanchi,fdsfrew, 	Aniket, Khanchi,abce@gmail.com, URL2,1, 	EN,	NULL,	NULL,	     ShivRaturi,2020:08:12 12:45:03,NULL,ShivRaturi,2020:08:12 12:45:03
 */
-entity Users{
-	firstName String required
-	lastName String required
+
+entity jhi_user{
+	login  String required
+	password_hash  String required
+	first_name  String required
+	last_name  String required
+	email  String required
+	image_url  String
+	activated Boolean
+	lang_key   String
+	activation_key String
+	reset_key  String
+	created_by  String
+	created_date LocalDate
+	reset_date LocalDate
+	last_modified_by String
+	last_modified_date LocalDate
+}
+
+4. UserDetails:
+id, mobileNo,	DOB, 		houseNo, streetNo,	city, 	state, 	pincode
+10, 999999, 	07-07-90, 	T1-801,	Taksila heights,Gurgaon, Haryana, 122001
+12, 88888,	07-07-89, 	T2,	Taksila heights,Gurgaon, Haryana, 122001
+*/
+entity UserDetails{
 	mobileNo String required
-	emailId String required
 	dob LocalDate required
-    	photo ImageBlob 
 	houseNo String required
 	streetNo Integer	
 	city String required
 	state String 	required
-	pincode String 
-	joiningDate LocalDate required
-    	accountStatus AccountStatus
-    	role	Roles
+	pincode String
 }
 /*
 UserPreferences:
-id, userId, language
-1,	12,	ENGLISH
+id, userId, theme
+1,	12,	BEACH
 */
 entity UserPreferences{
-	language Language
+	theme String
 }
-/*
-3. userLoginDetails:
-id, userId,	password
-1	12,	y239293993asdaswd	
-2	10,	y239293993asdaswd	
-2	13,	y239293993asdaswd
-*/
-entity UserLoginDetails{
-	userId String required unique
-	password String required
-}
-/*
+
 4. studentsStatus:
 id, StatusCode, Status
 1, LF, Left
@@ -121,14 +143,11 @@ enum InfoSources{
 /*
 8. students:
 id, userId, studentRegId, registrationForm, course, parentMobNo1, parentMobNo2, parentEmailId, studentStatus,leavingReason, infoSource
-100, 10, RA_GGN_2019-20-001,  form,	     X, 	9999,    8888, 		abc2@gmail.com, LF,	 	DF,		FR
+100, 10, RA_GGN_2019-20-001,  ImageBlob,     X, 	9999,    8888, 		abc2@gmail.com, LF,	 	DF,		FR
 */
 entity Students{
-	id Integer 
-    /** 
-    *DON'T HAVE ANY IDEA ABOUT REGISTRATION FORM
-    */
 	studentRegId String required unique
+	registrationForm ImageBlob
 	parentMobNo1 String 
 	parentMobNo2 String
 	parentEmailId String 
@@ -146,25 +165,23 @@ id, subjectCode, subjectTitle
 4,  IM,		IIT-Mathematics
 */
 entity Subjects{
-	id Integer unique required
 	subjectCode String required
 	subjectTitle String required
 }
 
 /*
-10. sessions:
-id, sessionId, session
+10. AcademicSessions:
+id, AcadSessionId, AcadSession
 1, 2020-21,	Academic Year 2020-21
 */
-entity Session{
-	id Integer
-	sessionId String required unique
-	session String required
+entity AcademicSessions{
+	AcadSessionId String required unique
+	AcadSession String required
 }
 
 /*
 11. studentsSubjects:
-id, studentRegId, subjectCode1, subjectCode2,subjectCode3,subjectCode4,subjectCode5,subjectCode6,subjectCode7,subjectCode8,courseId, month, sessionId
+id, studentRegId, subjectCode1, subjectCode2,subjectCode3,subjectCode4,subjectCode5,subjectCode6,subjectCode7,subjectCode8,courseId, month, AcadSessionId
 1,  RA_GGN_2019-20-001,PH,		CH,	MA,	     IIT-Math,     null,	null,		null,	null,	    XI,      JAN, 2020-21
 */
 entity StudentsSubjects{
@@ -174,7 +191,7 @@ entity StudentsSubjects{
 
 /*
 12. subjectsBaseFee:
-id, courseId, baseFee, session
+id, courseId, baseFee, AcadSession
 1,   IX,	1850,	2020-21
 2,   X,		2150,	2020-21
 3,   XI,	2450,	2020-21
@@ -187,7 +204,7 @@ entity SubjectsBaseFee{
 
 /*
 13. discounts:
-id, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, halfYearly, annually, sibling, referral,sessionId
+id, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, halfYearly, annually, sibling, referral,AcadSessionId
 1,	200,	  300,	   600,	   700,	    800,   1000,    1100,    4%,	7%,		9%,	10%,	200,	2020-21
 */
 entity Discounts{
@@ -208,7 +225,7 @@ entity Discounts{
 
 /*
 14. scholarsips:
-id, minMarks, scholarship,    sessionId
+id, minMarks, scholarship,    AcadSessionId
 1,   85%,	2%,		2020-21
 2,   90%,	3%,		2020-21
 3,   95%,	4%,		2020-21
@@ -225,7 +242,7 @@ enum FeeStatus{
 
 /*
 15. studentsFee:
-id, studentRegId,      subjectCode, fee, feeCorrection, month, sessionId, teacherId, feeStatus
+id, studentRegId,      subjectCode, fee, feeCorrection, month, AcadSessionId, teacherId, feeStatus
 1,  RA_GGN_2019-20-001,   MA,   2200,      null, 	 JAN,    2020-21,   GGN002,  NotPaid
 2,  RA_GGN_2019-20-001,   PH,   2300,      -300, 	 JAN,    2020-21,   GGN003,  Paid
 3,  RA_GGN_2019-20-002,   PH,   2500,      400, 	 FEB,    2020-21,   GGN003,  Paid
@@ -292,7 +309,7 @@ entity Teachers{
 }
 /*
 20. teachersShare:
-id, teacherId, share%, plannedClasses, actualClasses, shareCorrection, subjectId, course, month,  sessionId
+id, teacherId, share%, plannedClasses, actualClasses, shareCorrection, subjectId, course, month,  AcadSessionId
 1,   GGN002,	  80%,		17,    	15,   		null,		MA,	    X,    JAN,    2020-21
 */
 entity TeachersShare{
@@ -417,8 +434,8 @@ entity StudentScore{
 relationship OneToOne{
 	Students{student(userId)} to Users{studentID}
     	StudentsSubjects{id(studentRegId)} to Students{student}
-     	Discounts{discount(sessionId)} to Session{session}
-     	Scholarships{scholarship(sessionId)} to Session{session}
+     	Discounts{discount(AcadSessionId)} to AcadSession{AcadSession}
+     	Scholarships{scholarship(AcadSessionId)} to AcadSession{AcadSession}
      	StudentFees{fees(studentRegId)} to Students{student}
      	Employees{employee(userId)} to Users{studentID}
      	CenterHead{center(centerCode)} to Centers{centerhead}
@@ -442,14 +459,14 @@ relationship ManyToOne{
     	UserPreferences{user(emailId)} to Users
     	Students{course(course)} to Courses
     	StudentsSubjects{sub(courseId)} to Courses
-    	StudentsSubjects{sub(sessionId)} to Session
-    	SubjectsBaseFee{fee(session)} to Session
+    	StudentsSubjects{sub(AcadSessionId)} to AcadSession
+    	SubjectsBaseFee{fee(AcadSession)} to AcadSession
     	StudentFees{fees(subjectCode)} to Subjects
-    	StudentFees{fees(sessionId)} to Session
+    	StudentFees{fees(AcadSessionId)} to AcadSession
     	StudentFees{fees(teacherid)} to Teachers
     	TeachersShare{teacher(subjectCode)} to Subjects
     	TeachersShare{teacher(course)} to Courses
-    	TeachersShare{teacher(sessionId)} to Session
+    	TeachersShare{teacher(AcadSessionId)} to AcadSession
     	Chapters{chapter(subjectCode)} to Subjects
     	Chapters{chapter(courseId)} to Courses
     	Questions{question(courseId)} to Courses
