@@ -8,11 +8,11 @@ ROLE_ACCOUNTANT
 ROLE_TEACHER
 ROLE_STUDENT
 ROLE_MANAGER
-
+*/
 entity jhi_authority{
 	name String required
 }
-
+/*
 jhi_persistent_audit_event:
 event_id , principal , event_date , event_type 
 1, 	admin,	2020:08:12 12:45:03, AUTHENICATION_SECCESS
@@ -43,9 +43,10 @@ entity Features{
 3. roleAcess:
 roleId,		featureId,	create, read, update, delete
 ADMIN,		STUREG,		true,	true,	true,	false
+ACCOUNTANT,	SALARY,		true,	true,	true,	false
+ADMIN,		SALARY,		true,	true,	true,	false
 */
 entity RoleAccess{
-	roleId authority required
 	create Boolean
 	read Boolean
 	update Boolean
@@ -57,7 +58,7 @@ entity RoleAccess{
 id, login, password_hash, first_name, last_name, email, image_url,activated,lang_key,activation_key,reset_key,created_by,created_date,reset_date,last_modified_by,last_modified_date
 1. kunchitGoyal, hsadksa,	Kunchit, Goel, 	abc@gmail.com, URL1,0, 		EN,	NULL,	NULL,	     ShivRaturi,2020:08:12 12:45:03,NULL,ShivRaturi,2020:08:12 12:45:03
 12, AniketKhanchi,fdsfrew, 	Aniket, Khanchi,abce@gmail.com, URL2,1, 	EN,	NULL,	NULL,	     ShivRaturi,2020:08:12 12:45:03,NULL,ShivRaturi,2020:08:12 12:45:03
-*/
+
 
 entity jhi_user{
 	login  String required
@@ -76,20 +77,31 @@ entity jhi_user{
 	last_modified_by String
 	last_modified_date LocalDate
 }
-
-4. UserDetails:
-id, mobileNo,	DOB, 		houseNo, streetNo,	city, 	state, 	pincode
-10, 999999, 	07-07-90, 	T1-801,	Taksila heights,Gurgaon, Haryana, 122001
-12, 88888,	07-07-89, 	T2,	Taksila heights,Gurgaon, Haryana, 122001
 */
+
+enum City{
+	GURGAON,DELHI,DEHRADUN
+}
+
+enum State{
+	DELHI,HARYANA,UTTRAKHAND,MADHYAPRADESH
+}
+
+/*
+4. UserDetails:
+id, userId, mobileNo,	DOB, 		houseNo, streetNo,	city, 	state, 	pincode
+10, 1, 999999, 	07-07-90, 	T1-801,	Taksila heights,Gurgaon, Haryana, 122001
+12, 12, 88888,	07-07-89, 	T2,	Taksila heights,Gurgaon, Haryana, 122001
+*/
+
 entity UserDetails{
 	mobileNo String required
 	dob LocalDate required
 	houseNo String required
 	streetNo Integer	
-	city String required
-	state String 	required
-	pincode String
+	city City required
+	state State required
+	pincode Integer
 }
 /*
 UserPreferences:
@@ -100,7 +112,7 @@ entity UserPreferences{
 	theme String
 }
 
-4. studentsStatus:
+/*4. studentsStatus:
 id, StatusCode, Status
 1, LF, Left
 */
@@ -115,7 +127,7 @@ id, reasonCode, reason
 2, HF, High Fee
 */
 enum LeavingReasons{
-	DISTANCEFACTOR, UNHAPPYPHYSICS, UNHAPPYMATHS, UNHAPPYBIO, UNHAPPYCHEMISTRY, UNHAPPYMANAGEMENT, HIGHFEES, CLASSESOVERLAP, COURSECOMPLETED, BREAKEXAM, BREAKHOLIDAY, PERSONALREASON
+	DISTANCE_FACTOR, UNHAPPY_PHYSICS, UNHAPPY_MATHS, UNHAPPY_BIO, UNHAPPY_CHEMISTRY, UNHAPPY_MANAGEMENT, HIGH_FEES, CLASSES_OVERLAP, COURSE_COMPLETED, BREAK_EXAM, BREAK_HOLIDAY, PERSONAL_REASON
 }
 /*
 6. courses:
@@ -136,7 +148,7 @@ id, sourceCode, source
 3, FR,	Friends
 */
 enum InfoSources{
-	LOCATIONDIRECTLY, FRIENDS, BANNER, INTERNET, PAMPHLET, NEWSPAPER
+	LOCATION_DIRECTLY, FRIENDS, BANNER, INTERNET, PAMPHLET, NEWSPAPER
 }
 
 /*
@@ -150,9 +162,9 @@ entity Students{
 	parentMobNo1 String 
 	parentMobNo2 String
 	parentEmailId String 
-    	studentStatus StudentStatus
-    	leavingReason LeavingReasons 
-    	infoSource InfoSources
+    studentStatus StudentStatus
+    leavingReason LeavingReasons 
+    infoSource InfoSources
 }
 
 /*
@@ -178,14 +190,17 @@ entity AcademicSessions{
 	AcadSession String required
 }
 
+enum Month{
+	JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC
+}
+
 /*
 11. studentsSubjects:
 id, studentRegId, subjectCode1, subjectCode2,subjectCode3,subjectCode4,subjectCode5,subjectCode6,subjectCode7,subjectCode8,courseId, month, AcadSessionId
 1,  RA_GGN_2019-20-001,PH,		CH,	MA,	     IIT-Math,     null,	null,		null,	null,	    XI,      JAN, 2020-21
 */
-entity StudentsSubjects{
-	
-    month String required
+entity StudentsSubjects{	
+    month Month required
 }
 
 /*
@@ -216,8 +231,8 @@ entity Discounts{
 	quarterly Integer 
 	halfYearly Integer
 	annually Integer
-	sibling Boolean
-	referral Boolean
+	sibling Integer
+	referral Integer
 }
 
 /*
@@ -227,8 +242,7 @@ id, minMarks, scholarship%,    AcadSessionId
 2,   90%,	3%,		2020-21
 3,   95%,	4%,		2020-21
 */
-entity Scholarships{
-	
+entity Scholarships{	
 	minMarks Integer
 	scholarshippercent Integer   
 }
@@ -243,21 +257,21 @@ id, studentRegId,      subjectCode, fee, feeCorrection, month, AcadSessionId, te
 */
 entity StudentFees{
 	fee Integer 
-	feeCorrection String 
-	month String
+	feeCorrection Integer 
+	month Month
 	feeStatus Boolean
-}
-enum JobNature{
-	PARTTIME, FULLTIME
+	remarks String
 }
 
+enum JobNature{
+	PART_TIME, FULL_TIME
+}
 /*
 16. employees:
 id, userId, empolyeeId, jobNature,	BGC,		resume,			PAN,		accountNo,	bank,	ifsc
 1,   12,    GGN002,	PARTTIME,	CLEAR,		resumeAttached,		AHNPR08087,	121323,		SBI,	SBI83023
 */
-entity Employees{
-	
+entity Employees{	
 	empolyeeId String required unique
 	jobNature JobNature	
 	bgc Boolean
@@ -275,13 +289,11 @@ id, centerhead,centerCode, streetno,city,state,pincode
 3,  DDN_SUM,	HNo 37/C, Suman Nagar, Dehradun
 */
 entity Centers{
-
 	centerCode String required
 	streetNo Integer	
 	city String required
 	state String 	required
 	pincode String 
-
 }
 /*
 18. centerHeads:
@@ -289,10 +301,10 @@ id, empolyeeId, centerCode
 1, GGN003,	GGN_SEC4
 2, GGN004,	DDN_SUM
 */
-/*entity CenterHead{
-	id Integer 
+entity CenterHead{
+
 }
-*/
+
 
 /*
 19. teachers:
@@ -307,13 +319,13 @@ entity Teachers{
 id, teacherId, share%, plannedClasses, actualClasses, shareCorrection, subjectId, course, month,  AcadSessionId
 1,   GGN002,	  80%,		17,    	15,   		null,		MA,	    X,    JAN,    2020-21
 */
-entity TeachersShare{
-	
+entity TeachersShare{	
 	share Integer required max(100) 
 	plannedClasses Integer required
 	actualClasses Integer required
-	shareCorrection String
-	month String 
+	shareCorrection Integer
+	month Month
+	remarks String
 }
 
 /*
@@ -332,7 +344,7 @@ entity SalariesPayment{
 	unpaid Integer	min(0) required
 	date LocalDate 	required	
 	transactionId String required
-	mode Mode
+	paymentMode Mode
 	remarks String
 }
 /*
@@ -343,17 +355,9 @@ id, expenceTypeId, Detail
 3. FIXASSET, Fix assets
 */
 
-enum Type{
-	OPERATING, MARKETING, FIXASSET, 
+enum ExpensesType{
+	OPERATING, MARKETING, FIXASSET
 }
-
-entity ExpensesType{
-	
-	expenceTypeId Type
-	detail String
-}
-
-
 
 /*
 23. expenses:
@@ -362,8 +366,7 @@ id, item, quantity,    rate, 	laborCost,  otherExpense, total, date, transaction
 2, Signboard, 5,       10000,      3000,	2000,	  65000  10-07-20, IMPS67676, Debit Card, MARKETING, billAttachment, purchased from xyz shop
 */
 entity Expenses{
-
-	item String 
+	item String required 
 	quantity Integer    
 	rate Integer 	
 	laborCost Integer  
@@ -371,51 +374,48 @@ entity Expenses{
 	total Integer required
 	date LocalDate 
 	transactionId String required  
-	mode Mode	  
-	type Type 	   
-	bill String 	   
+	expenseMode Mode	  
+	type ExpensesType
+	bill ImageBlob	   
 	remarks String
 }
-///////////////////////////////////////DONE TILL NOW/////////////////////////////////////////////////
 /*
 24. chapters:
 id,	courseId,	subject,	chapterId,	chapterTitle
 1, 	XII,		MA,		DE,		differential equations
 2, 	3,		MA,		ADD,		simple addition
 */
-entity Chapters{
-	
+entity Chapters{	
 	chapterId String required	
 	chapterTitle String
 }
 /*
 25. questionLevel:
-id,	levelId,	detail
-1,	BEGINNERS,	basic beginers questions
-2,	MODERATE,	moderate questions
-1,	ADVANCE,	advanced questions
+id,	levelId,
+1,	BEGINNERS
+2,	MODERATE
+1,	ADVANCE
 */
-entity QuestionLevel{
-	id Integer
-	levelId String required	
-	detail String
+enum QuestionLevel{
+	BEGINNERS,MODERATE,ADVANCE
 }
 /*
 26. questions:
-id, courseId,subjectId,chapterId, question,	option1,	option2, option3,	option4, 	key, 	marks,	negativeMarks, levelId
+id, courseId,subjectId,chapterId, question,	option1,	option2, option3,	option4, 	answer, 	maxMarks,	negativeMarks, level
 1, 3,		MA,	ADD,	29+39		48		58	68		78		68,	4,	1,		BEGINNERS
 2, 3,		MA,	ADD,	19+39		48		58	68		78		58,	4,	1,		MODERATE
 */
-entity Questions{
-	questionid String required unique 
-	question TextBlob	
+entity Questions{ 
+	question TextBlob required
+	diagram	ImageBlob
 	option1 String 	
 	option2 String	
 	option3 String	
 	option4 String 	
-	key String 	
-	marks Integer	
+	answer String 	required
+	maxMarks Integer required	
 	negativeMarks Integer
+	level QuestionLevel required
 }
 /*
 27. studentsScore:
@@ -424,42 +424,41 @@ id, studentRegId,      	questionId, answer,	score,	date
 2,  RA_GGN_2019-20-001	2,	     78,	-1,	07-09-2020
 */
 entity StudentScore{
-	id Integer required
-	answer Integer	required
+	answer String required
 	score Integer required
-	date LocalDate
+	date LocalDate required
 }
+//DONE UPTO HERE
 
 relationship OneToOne{
-	Students{student(userId)} to Users{studentID}
-	Employees{employee(userId)} to Users{studentID}
-	StudentScore{score(studentRegId)} to Students{student}	
-
-
-    	StudentsSubjects{registrationno(studentRegId)} to Students{student}
-     	Center{centerhead(employeeId)} to Employees
-    	StudentFees{registrationno(studentRegId)} to Students{student}
-     	Teachers{teacher(empolyeeId)} to Employees
-    	
-     	
-      	
+	UserDetails{user(login)} to User,
+	UserPreferences{user(login)} to User,
+	Students{user(login)} to User,
+	
+	
+	Employees{user(login)} to User,
+	StudentScore{score(studentRegId)} to Students,	
+   	StudentsSubjects{registrationno(studentRegId)} to Students,
+   	Center{centerhead(employeeId)} to Employees,
+   	StudentFees{registrationno(studentRegId)} to Students,
+   	Teachers{teacher(empolyeeId)} to Employees      	
 }
 
-relationship ManyToMany{
+relationship ManyToMany{	
+	
+	
 	StudentsSubjects{subjects(subjectCode)} to Subjects{studentsubject}
-    	Teachers{subjects(subjectCode)} to Subjects{teachers}
-    	Teachers{courses(courseId)} to Courses{teachers}
-    	StudentsSubjects{course(courseId)} to Courses{studentsubjects}
-
-    	RoleAccess{features(featureId)} to Features{roleAcess}
+    Teachers{subjects(subjectCode)} to Subjects{teachers}
+    Teachers{courses(courseId)} to Courses{teachers}
+    StudentsSubjects{course(courseId)} to Courses{studentsubjects}   	
 }
 
-/*
-TODO: how to show user full name but select only Id for UserPreferences
-*/
 relationship ManyToOne{
-    	UserPreferences{user(emailId)} to Users
-    	
+		RoleAccess{role(name)} to jhi_authority{roleaccess}
+		RoleAccess{feature(featureDetail)} to Features{roleAcess}
+		Students{course(course)} to Courses{Students},
+		
+    	UserPreferences{user(emailId)} to User    	
     	Scholarships{session(AcadSessionId)} to AcadSession{AcadSession}
 		Discounts{session(AcadSessionId)} to AcadSession{AcadSession}
     	StudentsSubjects{session(AcadSessionId)} to AcadSession
@@ -473,8 +472,6 @@ relationship ManyToOne{
     	TeachersShare{teacher(employeeId)} to Employees
     	SalariesPayment{Employee(empolyeeId)} to  Employees{employid}
     	Expenses{IncurredBy{employeeId}} To Employees
-
-
     	Chapters{chapter(subjectCode)} to Subjects
     	Chapters{chapter(courseId)} to Courses
     	Questions{question(courseId)} to Courses
