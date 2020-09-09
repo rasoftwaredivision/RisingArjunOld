@@ -1,4 +1,3 @@
-
 /*jhi_authority:
 name
 ROLE_SUPERADMIN
@@ -12,6 +11,7 @@ ROLE_MANAGER
 entity Jhiauthority{
 	name String required
 }
+
 /* 
 jhi_persistent_audit_event:
 event_id , principal , event_date , event_type 
@@ -103,6 +103,7 @@ entity UserDetails{
 	state State required
 	pincode Integer
 }
+
 /*
 UserPreferences:
 id, userId, theme
@@ -210,8 +211,7 @@ id, courseId, baseFee, AcadSession
 2,   X,		2150,	2020-21
 3,   XI,	2450,	2020-21
 */
-entity SubjectsBaseFee{
-	courseId String required unique 
+entity SubjectsBaseFee{	 
 	baseFee Integer 
 }
 
@@ -237,14 +237,14 @@ entity Discounts{
 
 /*
 14. scholarsips:
-id, minMarks, scholarship%,    AcadSessionId
+id, minMarks, percent, AcadSessionId
 1,   85%,	2%,		2020-21
 2,   90%,	3%,		2020-21
 3,   95%,	4%,		2020-21
 */
 entity Scholarships{	
 	minMarks Integer
-	scholarshippercent Integer   
+	percent Integer   
 }
 
 
@@ -283,17 +283,18 @@ entity Employees{
 }
 /*
 17. centers:
-id, centerhead,centerCode, streetno,city,state,pincode
-1,  GGN_SEC4,	Shop No 13, Sector 4, Gurgaon
-2,  GGN_SEC37C,	Shop No 13-14, Sector 37C, Gurgaon
-3,  DDN_SUM,	HNo 37/C, Suman Nagar, Dehradun
+id, centerCode, centerTitle,	streetno,					city,	state,	pincode
+1,  GGN_SEC3, 	Gurgaon Sec3, 	Shop No 13, Sector 3 		Gurgaon,Haryana, 122001
+2,  GGN_SEC4, 	Gurgaon Sec4, 	Shop No 13-14, Sector 4, 	Gurgaon,Haryana, 122001
+3,  DDN_SUM, 	Ddun Sumannagar,HNo 37/C, Suman Nagar 		Dehradun,Uttrakhand, 248001
 */
 entity Centers{
-	centerCode String required
+	centerCode String required	
+	centerTitle String required
 	streetNo Integer	
-	city String required
-	state String 	required
-	pincode String 
+	city City required
+	state State required
+	pincode Integer 
 }
 /*
 18. centerHeads:
@@ -338,6 +339,7 @@ id, employeeId, salary,       paid, 	unpaid,	date, 		transactionId, mode,	remark
 enum Mode{
 	NEFT, UPI, CASH, DEBITCARD, NETBANKING, OTHERS
 }
+
 entity SalariesPayment{
 	salary Integer required min(0)   
 	paid Integer 	min(0) required
@@ -434,54 +436,48 @@ relationship OneToOne{
 	UserDetails{user(login)} to User,
 	UserPreferences{user(login)} to User,
 	Students{user(login)} to User,
-	Employees{user(login)} to User,
 	StudentsSubjects{registrationno(studentRegId)} to Students,
-   	Centers{centerhead(employeeId)} to Employees,
-   	StudentFees{registrationno(studentRegId)} to Students,
-   	Teachers{teacher(employeeId)} to Employees    
-
-	
-	
+	StudentFees{registrationno(studentRegId)} to Students,
+	Employees{user(login)} to User,
+   	CenterHead{centerhead(employeeId)} to Employees,
+   	Teachers{teacher(employeeId)} to Employees
 }
 
-relationship ManyToMany{	
-    StudentsSubjects{subjects(subjectCode)} to Subjects{studentsubject}
-    Teachers{subjects(subjectCode)} to Subjects{teachers}
-    Teachers{courses(courseId)} to Courses{teachers}
-    StudentsSubjects{course(courseId)} to Courses{studentsubjects}   	//TODO
-    Students{course(course)} to Courses{Students}
+relationship ManyToMany{
+    Students{course(course)} to Courses{Students},
+    StudentsSubjects{subjects(subjectTitle)} to Subjects{studentsubject},
+    StudentsSubjects{course(course)} to Courses{studentsubjects},
+    CenterHead{center(centerTitle)} to Centers{centerhead},    
+    Teachers{subjects(subjectTitle)} to Subjects{teachers},    
+    Teachers{courses(course)} to Courses{teachers}
 }
 
 relationship ManyToOne{
-	RoleAccess{role(name)} to Jhiauthority
-	RoleAccess{feature(featureDetail)} to Features
-	UserPreferences{user(login)} to User    
-	Scholarships{session(acadSessionId)} to AcademicSessions
-	Discounts{session(acadSessionId)} to AcademicSessions
-        StudentsSubjects{session(acadSessionId)} to AcademicSessions
-    	SubjectsBaseFee{session(acadSession)} to AcademicSessions
-        StudentFees{subject(subjectCode)} to Subjects
-    	StudentFees{session(acadSessionId)} to AcademicSessions
-    	StudentFees{teacherId(employeeId)} to Teachers
-    	TeachersShare{subject(subjectTitle)} to Subjects
-    	TeachersShare{course(courseId)} to Courses
-    	TeachersShare{session(acadSessionId)} to AcademicSessions
-    	TeachersShare{teacher(employeeId)} to Teachers
-    	SalariesPayment{Employee(employeeId)} to  Employees
-    	Expenses{IncurredBy(employeeId)} to Employees
-	Chapters{chapter(subjectCode)} to Subjects
-    	Chapters{chapter(courseId)} to Courses
-	Questions{question(courseId)} to Courses
-    	Questions{question(subjectCode)} to Subjects
-    	Questions{question(chapterId)} to Chapters
-    	StudentScore{score} to Questions
-	StudentScore{score(studentRegId)} to Students	
+	RoleAccess{role(name)} to Jhiauthority,
+	RoleAccess{feature(featureDetail)} to Features,
+	UserPreferences{user(login)} to User,
+	StudentsSubjects{session(acadSession)} to AcademicSessions,	
+	SubjectsBaseFee{course(course)} to Courses,
+	SubjectsBaseFee{session(acadSession)} to AcademicSessions,
+	Discounts{session(acadSession)} to AcademicSessions,
+	Scholarships{session(acadSession)} to AcademicSessions,	
+    StudentFees{subject(subjectTitle)} to Subjects,    
+    StudentFees{session(acadSession)} to AcademicSessions,    
+    StudentFees{teacher(employeeId)} to Teachers,
+    TeachersShare{teacher(employeeId)} to Teachers,        
+    TeachersShare{subject(subjectTitle)} to Subjects,    
+    TeachersShare{course(course)} to Courses,    
+    TeachersShare{session(acadSessionId)} to AcademicSessions,
+    SalariesPayment{employee(employeeId)} to  Employees,    
+    Expenses{incurredBy(employeeId)} to Employees,    
+	Chapters{course(course)} to Courses,
+	Chapters{subject(subjectTitle)} to Subjects,    
+	Questions{course(course)} to Courses,	
+    Questions{subject(subjectTitle)} to Subjects,    
+    Questions{chapter(chapterTitle)} to Chapters,
+    StudentScore{student(studentRegId)} to Students,
+    StudentScore{score} to Questions	
 }
-
-
-
-// defining multiple OneToMany relationships with comments
-
 
 // =======
 // Options
