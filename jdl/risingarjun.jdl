@@ -1,18 +1,18 @@
-/*
-jhi_authority:
+
+/*jhi_authority:
 name
 ROLE_SUPERADMIN
 ROLE_ADMIN
-ROLE_CENTERHEAD
+ROLE_CENTERHEAD		
 ROLE_ACCOUNTANT
 ROLE_TEACHER
 ROLE_STUDENT
 ROLE_MANAGER
 */
-entity jhi_authority{
+entity Jhiauthority{
 	name String required
 }
-/*
+/* 
 jhi_persistent_audit_event:
 event_id , principal , event_date , event_type 
 1, 	admin,	2020:08:12 12:45:03, AUTHENICATION_SECCESS
@@ -50,7 +50,7 @@ entity RoleAccess{
 	create Boolean
 	read Boolean
 	update Boolean
-	delete Boolean
+	del Boolean
 }
 
 /*
@@ -186,8 +186,8 @@ id, AcadSessionId, AcadSession
 1, 2020-21,	Academic Year 2020-21
 */
 entity AcademicSessions{
-	AcadSessionId String required unique
-	AcadSession String required
+	acadSessionId String required unique
+	acadSession String required
 }
 
 enum Month{
@@ -272,7 +272,7 @@ id, userId, empolyeeId, jobNature,	BGC,		resume,			PAN,		accountNo,	bank,	ifsc
 1,   12,    GGN002,	PARTTIME,	CLEAR,		resumeAttached,		AHNPR08087,	121323,		SBI,	SBI83023
 */
 entity Employees{	
-	empolyeeId String required unique
+	employeeId String required unique
 	jobNature JobNature	
 	bgc Boolean
 	resume ImageBlob	
@@ -434,51 +434,48 @@ relationship OneToOne{
 	UserDetails{user(login)} to User,
 	UserPreferences{user(login)} to User,
 	Students{user(login)} to User,
-	
-	
 	Employees{user(login)} to User,
-	StudentScore{score(studentRegId)} to Students,	
-   	StudentsSubjects{registrationno(studentRegId)} to Students,
-   	Center{centerhead(employeeId)} to Employees,
+	StudentsSubjects{registrationno(studentRegId)} to Students,
+   	Centers{centerhead(employeeId)} to Employees,
    	StudentFees{registrationno(studentRegId)} to Students,
-   	Teachers{teacher(empolyeeId)} to Employees      	
+   	Teachers{teacher(employeeId)} to Employees    
+
+	
+	
 }
 
 relationship ManyToMany{	
-	
-	
-	StudentsSubjects{subjects(subjectCode)} to Subjects{studentsubject}
+    StudentsSubjects{subjects(subjectCode)} to Subjects{studentsubject}
     Teachers{subjects(subjectCode)} to Subjects{teachers}
     Teachers{courses(courseId)} to Courses{teachers}
-    StudentsSubjects{course(courseId)} to Courses{studentsubjects}   	
+    StudentsSubjects{course(courseId)} to Courses{studentsubjects}   	//TODO
+    Students{course(course)} to Courses{Students}
 }
 
 relationship ManyToOne{
-		RoleAccess{role(name)} to jhi_authority{roleaccess}
-		RoleAccess{feature(featureDetail)} to Features{roleAcess}
-		Students{course(course)} to Courses{Students},
-		
-    	UserPreferences{user(emailId)} to User    	
-    	Scholarships{session(AcadSessionId)} to AcadSession{AcadSession}
-		Discounts{session(AcadSessionId)} to AcadSession{AcadSession}
-    	StudentsSubjects{session(AcadSessionId)} to AcadSession
-    	SubjectsBaseFee{session(AcadSession)} to AcadSession
-    	StudentFees{subject(subjectCode)} to Subjects
-    	StudentFees{session(AcadSessionId)} to AcadSession
+	RoleAccess{role(name)} to Jhiauthority
+	RoleAccess{feature(featureDetail)} to Features
+	UserPreferences{user(login)} to User    
+	Scholarships{session(acadSessionId)} to AcademicSessions
+	Discounts{session(acadSessionId)} to AcademicSessions
+        StudentsSubjects{session(acadSessionId)} to AcademicSessions
+    	SubjectsBaseFee{session(acadSession)} to AcademicSessions
+        StudentFees{subject(subjectCode)} to Subjects
+    	StudentFees{session(acadSessionId)} to AcademicSessions
     	StudentFees{teacherId(employeeId)} to Teachers
     	TeachersShare{subject(subjectTitle)} to Subjects
     	TeachersShare{course(courseId)} to Courses
-    	TeachersShare{session(AcadSessionId)} to AcadSession
-    	TeachersShare{teacher(employeeId)} to Employees
-    	SalariesPayment{Employee(empolyeeId)} to  Employees{employid}
-    	Expenses{IncurredBy{employeeId}} To Employees
-    	Chapters{chapter(subjectCode)} to Subjects
+    	TeachersShare{session(acadSessionId)} to AcademicSessions
+    	TeachersShare{teacher(employeeId)} to Teachers
+    	SalariesPayment{Employee(employeeId)} to  Employees
+    	Expenses{IncurredBy(employeeId)} to Employees
+	Chapters{chapter(subjectCode)} to Subjects
     	Chapters{chapter(courseId)} to Courses
-    	Questions{question(courseId)} to Courses
+	Questions{question(courseId)} to Courses
     	Questions{question(subjectCode)} to Subjects
     	Questions{question(chapterId)} to Chapters
-    	Questions{question(levelId)} to QuestionLevel
-     	StudentScore{score(questionid)} to Questions
+    	StudentScore{score} to Questions
+	StudentScore{score(studentRegId)} to Students	
 }
 
 
