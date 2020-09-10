@@ -162,7 +162,7 @@ entity Students{
 	registrationForm ImageBlob
 	parentMobNo1 String 
 	parentMobNo2 String
-	parentEmailId String 
+	parentEmailId String pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
     studentStatus StudentStatus
     leavingReason LeavingReasons 
     infoSource InfoSources
@@ -369,9 +369,9 @@ id, item, quantity,    rate, 	laborCost,  otherExpense, total, date, transaction
 */
 entity Expenses{
 	item String required 
-	quantity Integer    
-	rate Integer 	
-	laborCost Integer  
+	quantity Integer min(0)   
+	rate Integer min(0)	
+	laborCost Integer min(0) 
 	otherExpense Integer 
 	total Integer required
 	date LocalDate 
@@ -484,6 +484,10 @@ relationship ManyToOne{
 // =======
 
 // Set pagination options
+
+//service UserDetails, Students, StudentFees, TeachersShare, SalariesPayment, Expenses, Questions, StudentScore with serviceClass
+
+paginate UserDetails, Students, StudentFees, TeachersShare, SalariesPayment, Expenses, Questions, StudentScore with pagination
 
 
 dto * with mapstruct
