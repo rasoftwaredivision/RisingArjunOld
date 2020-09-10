@@ -35,8 +35,8 @@ id,	featureId,	featureDetail
 */
 
 entity Features{
-	featureId String required
-	featureDetail String required
+	featureId String unique required 
+	featureDetail String unique required
 }
 
 /*
@@ -95,7 +95,7 @@ id, userId, mobileNo,	DOB, 		houseNo, streetNo,	city, 	state, 	pincode
 */
 
 entity UserDetails{
-	mobileNo String required
+	mobileNo String unique required
 	dob LocalDate required
 	houseNo String required
 	streetNo Integer	
@@ -137,8 +137,8 @@ id, courseId, 	course
 2,  CLAT, 	CLAT Entrance
 */
 entity Courses{
-	courseId String required	
-	course String required
+	courseId String unique required	
+	course String unique required
 }
 
 /*
@@ -177,8 +177,8 @@ id, subjectCode, subjectTitle
 4,  IM,		IIT-Mathematics
 */
 entity Subjects{
-	subjectCode String required
-	subjectTitle String required
+	subjectCode String unique required
+	subjectTitle String unique required
 }
 
 /*
@@ -187,8 +187,8 @@ id, AcadSessionId, AcadSession
 1, 2020-21,	Academic Year 2020-21
 */
 entity AcademicSessions{
-	acadSessionId String required unique
-	acadSession String required
+	acadSessionId String unique required
+	acadSession String unique required
 }
 
 enum Month{
@@ -289,8 +289,8 @@ id, centerCode, centerTitle,	streetno,					city,	state,	pincode
 3,  DDN_SUM, 	Ddun Sumannagar,HNo 37/C, Suman Nagar 		Dehradun,Uttrakhand, 248001
 */
 entity Centers{
-	centerCode String required	
-	centerTitle String required
+	centerCode String unique required	
+	centerTitle String unique required
 	streetNo Integer	
 	city City required
 	state State required
@@ -476,7 +476,7 @@ relationship ManyToOne{
     Questions{subject(subjectTitle)} to Subjects,    
     Questions{chapter(chapterTitle)} to Chapters,
     StudentScore{student(studentRegId)} to Students,
-    StudentScore{score} to Questions	
+    StudentScore{questionId} to Questions	
 }
 
 // =======
