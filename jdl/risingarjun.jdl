@@ -455,7 +455,6 @@ relationship ManyToMany{
 relationship ManyToOne{
 	RoleAccess{role(name)} to Jhiauthority,
 	RoleAccess{feature(featureDetail)} to Features,
-	UserPreferences{user(login)} to User,
 	StudentsSubjects{session(acadSession)} to AcademicSessions,	
 	SubjectsBaseFee{course(course)} to Courses,
 	SubjectsBaseFee{session(acadSession)} to AcademicSessions,
