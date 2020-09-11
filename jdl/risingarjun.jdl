@@ -80,11 +80,11 @@ entity jhi_user{
 */
 
 enum City{
-	GURGAON,DELHI,DEHRADUN
+	GURGAON, DELHI, DEHRADUN
 }
 
 enum State{
-	DELHI,HARYANA,UTTRAKHAND,MADHYAPRADESH
+	DELHI, HARYANA, UTTRAKHAND, MADHYAPRADESH
 }
 
 /*
@@ -128,7 +128,7 @@ id, reasonCode, reason
 2, HF, High Fee
 */
 enum LeavingReasons{
-	DISTANCE_FACTOR, UNHAPPY_PHYSICS, UNHAPPY_MATHS, UNHAPPY_BIO, UNHAPPY_CHEMISTRY, UNHAPPY_MANAGEMENT, HIGH_FEES, CLASSES_OVERLAP, COURSE_COMPLETED, BREAK_EXAM, BREAK_HOLIDAY, PERSONAL_REASON
+	DISTANCEFACTOR, UNHAPPYPHYSICS, UNHAPPYMATHS, UNHAPPYBIO, UNHAPPYCHEMISTRY, UNHAPPYMANAGEMENT, HIGHFEES, CLASSESOVERLAP, COURSECOMPLETED, BREAKEXAM, BREAKHOLIDAY, PERSONALREASON
 }
 /*
 6. courses:
@@ -149,7 +149,7 @@ id, sourceCode, source
 3, FR,	Friends
 */
 enum InfoSources{
-	LOCATION_DIRECTLY, FRIENDS, BANNER, INTERNET, PAMPHLET, NEWSPAPER
+	LOCATIONDIRECTLY, FRIENDS, BANNER, INTERNET, PAMPHLET, NEWSPAPER
 }
 
 /*
@@ -192,7 +192,7 @@ entity AcademicSessions{
 }
 
 enum Month{
-	JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC
+	JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC
 }
 
 /*
@@ -264,7 +264,7 @@ entity StudentFees{
 }
 
 enum JobNature{
-	PART_TIME, FULL_TIME
+	PARTTIME, FULLTIME
 }
 /*
 16. employees:
@@ -399,7 +399,7 @@ id,	levelId,
 1,	ADVANCE
 */
 enum QuestionLevel{
-	BEGINNERS,MODERATE,ADVANCE
+	BEGINNERS, MODERATE, ADVANCE
 }
 
 enum QuestionStatus{
@@ -407,7 +407,7 @@ enum QuestionStatus{
 }
 
 enum Fundamentals{
-	BASIC_PROPOTIONALITY_THEROEM, SECTION_FORMULA,SAS_CONGURENCE, MID_POINT_THEOREM
+	BASICPROPOTIONALITYTHEROEM, SECTIONFORMULA, SASCONGURENCE, MIDPOINTTHEOREM
 }
 
 /*FundamentalsDetails:
@@ -491,7 +491,7 @@ relationship OneToOne{
 	UserDetails{user(login)} to User,
 	UserPreferences{user(login)} to User,
 	Students{user(login)} to User,
-	StudentsSubjects{registrationno(studentRegId)} to Students,
+	
 	StudentFees{registrationno(studentRegId)} to Students,
 	Employees{user(login)} to User,
    	CenterHead{centerhead(employeeId)} to Employees,
@@ -513,6 +513,7 @@ relationship ManyToOne{
 	RoleAccess{role(name)} to Jhiauthority,
 	RoleAccess{feature(featureDetail)} to Features,
 	StudentsSubjects{session(acadSession)} to AcademicSessions,	
+	StudentsSubjects{registrationno(studentRegId)} to Students,
 	SubjectsBaseFee{course(course)} to Courses,
 	SubjectsBaseFee{session(acadSession)} to AcademicSessions,
 	Discounts{session(acadSession)} to AcademicSessions,
