@@ -80,18 +80,18 @@ entity jhi_user{
 */
 
 enum City{
-	GURGAON, DELHI, DEHRADUN
+	GURGAON,DELHI,DEHRADUN
 }
 
 enum State{
-	DELHI, HARYANA, UTTRAKHAND, MADHYAPRADESH
+	DELHI,HARYANA,UTTRAKHAND,MADHYAPRADESH
 }
 
 /*
 4. UserDetails:
-id, userId, mobileNo,	DOB, 		houseNo, streetNo,	city, 	state, 	pincode
-10, 1, 999999, 	07-07-90, 	T1-801,	Taksila heights,Gurgaon, Haryana, 122001
-12, 12, 88888,	07-07-89, 	T2,	Taksila heights,Gurgaon, Haryana, 122001
+id, userId, enterprise, mobileNo,	DOB, 		houseNo, streetNo,	city, 	state, 	pincode
+10, 1, 		30,			999999, 	07-07-90, 	T1-801,	Taksila heights,Gurgaon, Haryana, 122001
+12, 12, 	31, 		88888,	07-07-89, 	T2,	Taksila heights,Gurgaon, Haryana, 122001
 */
 
 entity UserDetails{
@@ -128,7 +128,7 @@ id, reasonCode, reason
 2, HF, High Fee
 */
 enum LeavingReasons{
-	DISTANCEFACTOR, UNHAPPYPHYSICS, UNHAPPYMATHS, UNHAPPYBIO, UNHAPPYCHEMISTRY, UNHAPPYMANAGEMENT, HIGHFEES, CLASSESOVERLAP, COURSECOMPLETED, BREAKEXAM, BREAKHOLIDAY, PERSONALREASON
+	DISTANCE_FACTOR, UNHAPPY_PHYSICS, UNHAPPY_MATHS, UNHAPPY_BIO, UNHAPPY_CHEMISTRY, UNHAPPY_MANAGEMENT, HIGH_FEES, CLASSES_OVERLAP, COURSE_COMPLETED, BREAK_EXAM, BREAK_HOLIDAY, PERSONAL_REASON
 }
 /*
 6. courses:
@@ -149,7 +149,7 @@ id, sourceCode, source
 3, FR,	Friends
 */
 enum InfoSources{
-	LOCATIONDIRECTLY, FRIENDS, BANNER, INTERNET, PAMPHLET, NEWSPAPER
+	LOCATION_DIRECTLY, FRIENDS, BANNER, INTERNET, PAMPHLET, NEWSPAPER
 }
 
 /*
@@ -192,7 +192,7 @@ entity AcademicSessions{
 }
 
 enum Month{
-	JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC
+	JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC
 }
 
 /*
@@ -206,10 +206,10 @@ entity StudentsSubjects{
 
 /*
 12. subjectsBaseFee:
-id, courseId, baseFee, AcadSession
-1,   IX,	1850,	2020-21
-2,   X,		2150,	2020-21
-3,   XI,	2450,	2020-21
+id, courseId, enterprise, baseFee, AcadSession
+1,   IX,	30, 1850,	2020-21
+2,   X,		20, 2150,	2020-21
+3,   XI,	50, 2450,	2020-21
 */
 entity SubjectsBaseFee{	 
 	baseFee Integer 
@@ -217,8 +217,8 @@ entity SubjectsBaseFee{
 
 /*
 13. discounts:
-id, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, halfYearly, annually, sibling, referral,AcadSessionId
-1,	200,	  300,	   600,	   700,	    800,   1000,    1100,    4%,	7%,		9%,	10%,	200,	2020-21
+id, enterprise, subject2,subject3,subject4,subject5,subject6,subject7,subject8, quarterly, halfYearly, annually, sibling, referral,AcadSessionId
+1,	20, 200,	  300,	   600,	   700,	    800,   1000,    1100,    4%,	7%,		9%,	10%,	200,	2020-21
 */
 entity Discounts{
 	subject2 Integer 
@@ -237,10 +237,10 @@ entity Discounts{
 
 /*
 14. scholarsips:
-id, minMarks, percent, AcadSessionId
-1,   85%,	2%,		2020-21
-2,   90%,	3%,		2020-21
-3,   95%,	4%,		2020-21
+id, enterprise, minMarks, percent, AcadSessionId
+1,   30, 85%,	2%,		2020-21
+2,   20, 90%,	3%,		2020-21
+3,   35, 95%,	4%,		2020-21
 */
 entity Scholarships{	
 	minMarks Integer
@@ -264,7 +264,7 @@ entity StudentFees{
 }
 
 enum JobNature{
-	PARTTIME, FULLTIME
+	PART_TIME, FULL_TIME
 }
 /*
 16. employees:
@@ -283,10 +283,10 @@ entity Employees{
 }
 /*
 17. centers:
-id, centerCode, centerTitle,	streetno,					city,	state,	pincode
-1,  GGN_SEC3, 	Gurgaon Sec3, 	Shop No 13, Sector 3 		Gurgaon,Haryana, 122001
-2,  GGN_SEC4, 	Gurgaon Sec4, 	Shop No 13-14, Sector 4, 	Gurgaon,Haryana, 122001
-3,  DDN_SUM, 	Ddun Sumannagar,HNo 37/C, Suman Nagar 		Dehradun,Uttrakhand, 248001
+id, enterprise, centerCode, centerTitle,	streetno,					city,	state,	pincode
+1,  20, GGN_SEC3, 	Gurgaon Sec3, 	Shop No 13, Sector 3 		Gurgaon,Haryana, 122001
+2,  30, GGN_SEC4, 	Gurgaon Sec4, 	Shop No 13-14, Sector 4, 	Gurgaon,Haryana, 122001
+3,  35, DDN_SUM, 	Ddun Sumannagar,HNo 37/C, Suman Nagar 		Dehradun,Uttrakhand, 248001
 */
 entity Centers{
 	centerCode String unique required	
@@ -341,8 +341,7 @@ enum Mode{
 }
 
 entity SalariesPayment{
-	salary Integer required min(0)
-	deduction Integer  // default value is zero
+	salary Integer required min(0)   
 	paid Integer 	min(0) required
 	unpaid Integer	min(0) required
 	date LocalDate 	required	
@@ -364,9 +363,9 @@ enum ExpensesType{
 
 /*
 23. expenses:
-id, item, quantity,    rate, 	laborCost,  otherExpense, total, date, transactionId, mode, 	  type, 	   bill, 	   remarks
-1, Chairs,   10,        400,       200,		1000,	   5200  07-07-20, IMPS68676, Debit Card, FIXASSET,  billAttachment, purchased from Sadar bazar
-2, Signboard, 5,       10000,      3000,	2000,	  65000  10-07-20, IMPS67676, Debit Card, MARKETING, billAttachment, purchased from xyz shop
+id, enterprise, item, quantity,    rate, 	laborCost,  otherExpense, total, date, transactionId, mode, 	  type, 	   bill, 	   remarks
+1, 20,	 Chairs,   10,        400,       200,		1000,	   5200  07-07-20, IMPS68676, Debit Card, FIXASSET,  billAttachment, purchased from Sadar bazar
+2, 30,	Signboard, 5,       10000,      3000,	2000,	  65000  10-07-20, IMPS67676, Debit Card, MARKETING, billAttachment, purchased from xyz shop
 */
 entity Expenses{
 	item String required 
@@ -400,25 +399,51 @@ id,	levelId,
 1,	ADVANCE
 */
 enum QuestionLevel{
-	BEGINNERS, MODERATE, ADVANCE
+	BEGINNERS,MODERATE,ADVANCE
 }
+
+enum QuestionStatus{
+	CREATED, REWRITE, APPROVED
+}
+
+enum Fundamentals{
+	BASIC_PROPOTIONALITY_THEROEM, SECTION_FORMULA,SAS_CONGURENCE, MID_POINT_THEOREM
+}
+
+/*FundamentalsDetails:
+Id, concept, subject, details
+1,	BASIC_PROPOTIONALITY_THEROEM, MA, https://risingarjun.com/resources/BASIC_PROPOTIONALITY_THEROEM	
+* 
+*/
+entity FundamentalsDetails{	 
+	concept Fundamentals
+	details String
+}
+
 /*
 26. questions:
-id, courseId,subjectId,chapterId, question,	option1,	option2, option3,	option4, 	answer, 	maxMarks,	negativeMarks, level
-1, 3,		MA,	ADD,	29+39		48		58	68		78		68,	4,	1,		BEGINNERS
-2, 3,		MA,	ADD,	19+39		48		58	68		78		58,	4,	1,		MODERATE
+id, enterprise, courseId,subjectId,chapterId, question,	option1,option2,option3,option4, answer, fundamentals, maxMarks,negativeMarks, durationMins, level
+1, 	30,			3,			MA,		ADD,		29+39	48,		58,		68,			78,		68,		SAS, 	4,		1,		5,	BEGINNERS
+2, 	20,			3,			MA,		ADD,		19+39	48,		58,		68,			78,		58,		MPT, 4,		1,		4,	MODERATE
+
+solution, video, 							 creator, approver, status
+xxxx, https://risingarjun.com/resources/xxxx, 12,      13, 		APPROVED 
 */
-entity Questions{ 
+entity Questions{
 	question TextBlob required
 	diagram	ImageBlob
 	option1 String 	
 	option2 String	
 	option3 String	
 	option4 String 	
-	answer String 	required
-	maxMarks Integer required	
+	answer String required
+	maxMarks Integer required
 	negativeMarks Integer
+	durationMins Integer required		
 	level QuestionLevel required
+	solution String
+	video String
+	status QuestionStatus required
 }
 /*
 27. studentsScore:
@@ -431,6 +456,35 @@ entity StudentScore{
 	score Integer required
 	date LocalDate required
 }
+
+/* 
+Enterprise:
+id, abbrevation, enterprisename, admin,logo, punchline, mission, vision, guidingPrinciples, address,email,mobile,landline,fax
+10, RisingArjun, Rising Arjun, 12, logoImage, punchline, somemission, someprinciples, someaddress, nancy@gmail.com, 9999, 8888
+20, NANCYCLASSES, Nancy Classes, 12, logoImage, punchline, somemission, someprinciples, someaddress, nancy@gmail.com, 9999, 8888
+30, JATINCOURSE, JATIN Coaching, 12, logoImage, punchline, somemission, someprinciples, someaddress, nancy@gmail.com, 9999, 8888
+*/ 
+entity Enterprise{
+	abbrevation String required minlength(3)  maxlength(20)
+	enterprisename String required minlength(3)  maxlength(64)
+}
+
+/* 
+EnterpriseSettings:
+id, enterpriseid, theme, foreground, background,  disclaimer, policy, copyrights,termsOfUsage, 
+1, 	10,			xxx,		xxx, 	xxxx, 		 somedisclaimer, somePolicyDoc, someCopyright, terms
+2, 	20,			xxrx,		xxx, 	xxxx, 		 somedisclaimer, somePolicyDoc, someCopyright, terms
+*/ 
+entity EnterpriseSettings{
+	theme String
+	foreground String
+	background String
+	disclaimer String
+	policy 		String
+	copyrights String
+	termsOfUsage String
+}
+
 //DONE UPTO HERE
 
 relationship OneToOne{
@@ -441,7 +495,9 @@ relationship OneToOne{
 	StudentFees{registrationno(studentRegId)} to Students,
 	Employees{user(login)} to User,
    	CenterHead{centerhead(employeeId)} to Employees,
-   	Teachers{teacher(employeeId)} to Employees
+   	Teachers{teacher(employeeId)} to Employees,
+   	Questions{course(course)} to Teachers	
+   	
 }
 
 relationship ManyToMany{
@@ -463,8 +519,8 @@ relationship ManyToOne{
 	Scholarships{session(acadSession)} to AcademicSessions,	
     StudentFees{subject(subjectTitle)} to Subjects,    
     StudentFees{session(acadSession)} to AcademicSessions,    
-    StudentFees{teacher(employeeId)} to Employees,
-    TeachersShare{teacher(employeeId)} to Employees,        
+    StudentFees{teacher(employeeId)} to Teachers,
+    TeachersShare{teacher(employeeId)} to Teachers,        
     TeachersShare{subject(subjectTitle)} to Subjects,    
     TeachersShare{course(course)} to Courses,    
     TeachersShare{session(acadSessionId)} to AcademicSessions,
