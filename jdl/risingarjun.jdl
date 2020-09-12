@@ -457,6 +457,10 @@ entity StudentScore{
 	date LocalDate required
 }
 
+enum NatureOfBusiness{
+	COACHING
+}
+
 /* 
 Enterprise:
 id, abbrevation, enterprisename, admin,logo, punchline, mission, vision, guidingPrinciples, address,email,mobile,landline,fax
@@ -465,8 +469,9 @@ id, abbrevation, enterprisename, admin,logo, punchline, mission, vision, guiding
 30, JATINCOURSE, JATIN Coaching, 12, logoImage, punchline, somemission, someprinciples, someaddress, nancy@gmail.com, 9999, 8888
 */ 
 entity Enterprise{
-	abbrevation String required minlength(3)  maxlength(20)
-	enterprisename String required minlength(3)  maxlength(64)
+	abbrevation String required minlength(3)  maxlength(20),
+	enterprisename String required minlength(3)  maxlength(64),
+	natureofbusiness NatureOfBusiness
 }
 
 /* 
@@ -491,12 +496,11 @@ relationship OneToOne{
 	UserDetails{user(login)} to User,
 	UserPreferences{user(login)} to User,
 	Students{user(login)} to User,
-	
 	StudentFees{registrationno(studentRegId)} to Students,
 	Employees{user(login)} to User,
    	CenterHead{centerhead(employeeId)} to Employees,
    	Teachers{teacher(employeeId)} to Employees,
-   	Questions{course(course)} to Teachers	
+   	
    	
 }
 
@@ -520,8 +524,8 @@ relationship ManyToOne{
 	Scholarships{session(acadSession)} to AcademicSessions,	
     StudentFees{subject(subjectTitle)} to Subjects,    
     StudentFees{session(acadSession)} to AcademicSessions,    
-    StudentFees{teacher(employeeId)} to Teachers,
-    TeachersShare{teacher(employeeId)} to Teachers,        
+    StudentFees{teacher(employeeId)} to Employees,
+    TeachersShare{teacher(employeeId)} to Employees,        
     TeachersShare{subject(subjectTitle)} to Subjects,    
     TeachersShare{course(course)} to Courses,    
     TeachersShare{session(acadSessionId)} to AcademicSessions,
@@ -532,8 +536,17 @@ relationship ManyToOne{
 	Questions{course(course)} to Courses,	
     Questions{subject(subjectTitle)} to Subjects,    
     Questions{chapter(chapterTitle)} to Chapters,
+    Questions{questionsetter} to Employees
     StudentScore{student(studentRegId)} to Students,
-    StudentScore{questionId} to Questions	
+    StudentScore{questionId} to Questions	,
+
+    UserDetails{enterprise(enterprisename)} to Enterprise,
+    Discounts{enterprise(enterprisename)} to Enterprise,
+    Scholarships{enterprise(enterprisename)} to Enterprise,
+    Centers{enterprise(enterprisename)} to Enterprise,
+    Expenses{enterprise(enterprisename)} to Enterprise,
+    Questions{enterprise(enterprisename)} to Enterprise,
+    EnterpriseSettings{enterprise(abbrevation)} to Enterprise
 }
 
 // =======
