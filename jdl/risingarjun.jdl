@@ -92,7 +92,7 @@ enum Country{
 }
 /*
 4. UserDetails:
-id, userId, enterprise, mobileNo,	DOB, 		houseNo, streetNo,	city, 	state, Country,	pincode
+id, userId, enterprise, mobileNo,	DOB, 		houseNo, street,	city, 	state, Country,	pincode
 10, 1, 		30,			999999, 	07-07-90, 	T1-801,	Taksila heights,Gurgaon, Haryana, INDIA, 122001
 12, 12, 	31, 		88888,	07-07-89, 	T2,	Taksila heights,Gurgaon, Haryana, INDIA, 122001
 */
@@ -101,7 +101,7 @@ entity UserDetails{
 	mobileNo String unique required
 	dob LocalDate required
 	houseNo String required
-	streetNo Integer	
+	street String
 	city City required
 	state State required
 	country Country required
@@ -287,7 +287,7 @@ entity Employees{
 }
 /*
 17. centers:
-id, enterprise, centerCode, centerTitle,	streetno,					city,	state,	country, pincode
+id, enterprise, centerCode, centerTitle,	street,					city,	state,	country, pincode
 1,  20, GGN_SEC3, 	Gurgaon Sec3, 	Shop No 13, Sector 3 		Gurgaon,Haryana, INDIA, 122001
 2,  30, GGN_SEC4, 	Gurgaon Sec4, 	Shop No 13-14, Sector 4, 	Gurgaon,Haryana, INDIA, 122001
 3,  35, DDN_SUM, 	Ddun Sumannagar,HNo 37/C, Suman Nagar 		Dehradun,Uttrakhand, INDIA, 248001
@@ -295,7 +295,7 @@ id, enterprise, centerCode, centerTitle,	streetno,					city,	state,	country, pin
 entity Centers{
 	centerCode String unique required	
 	centerTitle String unique required
-	streetNo Integer	
+	street String
 	city City required
 	state State required
 	country Country required
@@ -472,7 +472,7 @@ enum NatureOfBusiness{
 
 /* 
 Enterprise:
-id, abbrevation, enterprisename, logo, punchline, mission, vision, principles, email,mobile,landline,fax, plotNo, streetNo,	city, 	state,  country,	pincode
+id, abbrevation, enterprisename, logo, punchline, mission, vision, principles, email,mobile,landline,fax, plotNo, street,	city, 	state,  country,	pincode
 10, RisingArjun, Rising Arjun,  logoImage, punchline, somemission, someprinciples, nancy@gmail.com, 9999, 8888,  	T1-801,	Kataria Market Sec37C,Gurgaon, Haryana, INDIA,122001
 20, NANCYCLASSES, Nancy Classes, logoImage, punchline, somemission, someprinciples, nancy@gmail.com, 9999, 8888,  	T1-801,	Kataria Market Sec37C,,Gurgaon, Haryana, INDIA, 122001
 30, JATINCOURSE, JATIN Coaching, logoImage, punchline, somemission, someprinciples, nancy@gmail.com, 9999, 8888,  	T1-801,	Kataria Market Sec37C,,Gurgaon, Haryana, INDIA, 122001
@@ -482,17 +482,18 @@ entity Enterprise{
 	enterprisename 	String required minlength(3)  maxlength(64)
 	natureofbusiness NatureOfBusiness required
 	logo			ImageBlob
-	punchline 		String minlength(3)  maxlength(1024)
-	mission 		String minlength(3)  maxlength(1024)
-	vision 			String minlength(3)  maxlength(1024)
-	principles 		String minlength(3)  maxlength(1024)
-	email 			String pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
-	mobile 			String required
+	punchline 		String
+	mission 		String
+	vision 		String
+	principles 	String
+	email 		String pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+	mobile 		String required
 	landline 		String
 	fax 			String
-	plotNo			String required
+	plotNo		String required
+	street		String
 	city 			City required
-	state 			State required
+	state 		State required
 	country 		Country required
 	pincode 		Integer
 }
