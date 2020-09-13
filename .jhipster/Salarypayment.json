@@ -1,0 +1,92 @@
+{
+    "name": "Salarypayment",
+    "fields": [
+        {
+            "fieldName": "salary",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "month",
+            "fieldType": "Month",
+            "fieldValues": "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paid",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "required"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "unpaid",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "required"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "transactionId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paymentMode",
+            "fieldType": "Mode",
+            "fieldValues": "NEFT,UPI,CASH,DEBITCARD,NETBANKING,OTHERS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "salarypayment",
+            "relationshipName": "employeeId",
+            "otherEntityField": "employeeId"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "academicsession",
+            "otherEntityRelationshipName": "salarypayment",
+            "relationshipName": "session",
+            "otherEntityField": "acadSessionId"
+        }
+    ],
+    "changelogDate": "20200913172543",
+    "entityTableName": "salarypayment",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

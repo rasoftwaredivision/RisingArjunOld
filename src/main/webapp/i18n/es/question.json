@@ -1,0 +1,43 @@
+{
+  "risingArjunApp": {
+    "question": {
+      "home": {
+        "title": "Questions",
+        "createLabel": "Crear nuevo Question",
+        "createOrEditLabel": "Crear o editar Question",
+        "notFound": "No Question found"
+      },
+      "created": "Un nuevo Question ha sido creado con el identificador {{ param }}",
+      "updated": "Un Question ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Question ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Question {{ id }}?"
+      },
+      "detail": {
+        "title": "Question"
+      },
+      "question": "Question",
+      "diagram": "Diagram",
+      "option1": "Option 1",
+      "option2": "Option 2",
+      "option3": "Option 3",
+      "option4": "Option 4",
+      "multiChoice": "Multi Choice",
+      "answer": "Answer",
+      "maxMarks": "Max Marks",
+      "negativeMarks": "Negative Marks",
+      "durationMins": "Duration Mins",
+      "level": "Level",
+      "solution": "Solution",
+      "video": "Video",
+      "status": "Status",
+      "enterprise": "Enterprise",
+      "course": "Course",
+      "subject": "Subject",
+      "chapter": "Chapter",
+      "writer": "Writer",
+      "approver": "Approver",
+      "fundamentals": "Fundamentals"
+    }
+  }
+}

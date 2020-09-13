@@ -1,0 +1,52 @@
+{
+    "name": "Studentscore",
+    "fields": [
+        {
+            "fieldName": "answer",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "score",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "student",
+            "otherEntityRelationshipName": "studentscore",
+            "relationshipName": "student",
+            "otherEntityField": "studentRegId"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "question",
+            "otherEntityRelationshipName": "studentscore",
+            "relationshipName": "question",
+            "otherEntityField": "question"
+        }
+    ],
+    "changelogDate": "20200913172548",
+    "entityTableName": "studentscore",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

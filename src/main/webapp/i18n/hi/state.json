@@ -1,0 +1,12 @@
+{
+  "risingArjunApp": {
+    "State": {
+      "null": "",
+      "DELHI": "DELHI",
+      "HARYANA": "HARYANA",
+      "MADHYAPRADESH": "MADHYAPRADESH",
+      "UTTRAKHAND": "UTTRAKHAND",
+      "UTTARPRADESH": "UTTARPRADESH"
+    }
+  }
+}

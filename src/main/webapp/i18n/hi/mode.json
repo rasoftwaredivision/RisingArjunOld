@@ -1,0 +1,13 @@
+{
+  "risingArjunApp": {
+    "Mode": {
+      "null": "",
+      "NEFT": "NEFT",
+      "UPI": "UPI",
+      "CASH": "CASH",
+      "DEBITCARD": "DEBITCARD",
+      "NETBANKING": "NETBANKING",
+      "OTHERS": "OTHERS"
+    }
+  }
+}

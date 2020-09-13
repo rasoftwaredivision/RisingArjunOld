@@ -1,0 +1,30 @@
+{
+  "risingArjunApp": {
+    "enterprisesettings": {
+      "home": {
+        "title": "Enterprisesettings",
+        "createLabel": "Create a new Enterprisesettings",
+        "createOrEditLabel": "Create or edit a Enterprisesettings",
+        "notFound": "No Enterprisesettings found"
+      },
+      "created": "A new Enterprisesettings is created with identifier {{ param }}",
+      "updated": "A Enterprisesettings is updated with identifier {{ param }}",
+      "deleted": "A Enterprisesettings is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Enterprisesettings {{ id }}?"
+      },
+      "detail": {
+        "title": "Enterprisesettings"
+      },
+      "theme": "Theme",
+      "foreground": "Foreground",
+      "background": "Background",
+      "disclaimer": "Disclaimer",
+      "policy": "Policy",
+      "copyrights": "Copyrights",
+      "termsOfUsage": "Terms Of Usage",
+      "admin": "Admin",
+      "enterprise": "Enterprise"
+    }
+  }
+}

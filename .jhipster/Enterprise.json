@@ -1,0 +1,129 @@
+{
+    "name": "Enterprise",
+    "fields": [
+        {
+            "fieldName": "abbrevation",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 3,
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "enterprisename",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 3,
+            "fieldValidateRulesMaxlength": 64
+        },
+        {
+            "fieldName": "natureofbusiness",
+            "fieldType": "Natureofbusiness",
+            "fieldValues": "COACHING",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "logo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "punchline",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mission",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "vision",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "principles",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+        },
+        {
+            "fieldName": "mobile",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "landline",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fax",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "plotNo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "street",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "City",
+            "fieldValues": "DEHRADUN,DELHI,GURGAON,LONI,TEHRI",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "state",
+            "fieldType": "State",
+            "fieldValues": "DELHI,HARYANA,MADHYAPRADESH,UTTRAKHAND,UTTARPRADESH",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "Country",
+            "fieldValues": "INDIA,AUSTRALIA,USA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pincode",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200913172549",
+    "entityTableName": "enterprise",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

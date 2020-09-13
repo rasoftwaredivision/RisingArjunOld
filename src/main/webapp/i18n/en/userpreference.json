@@ -1,0 +1,23 @@
+{
+  "risingArjunApp": {
+    "userpreference": {
+      "home": {
+        "title": "Userpreferences",
+        "createLabel": "Create a new Userpreference",
+        "createOrEditLabel": "Create or edit a Userpreference",
+        "notFound": "No Userpreference found"
+      },
+      "created": "A new Userpreference is created with identifier {{ param }}",
+      "updated": "A Userpreference is updated with identifier {{ param }}",
+      "deleted": "A Userpreference is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Userpreference {{ id }}?"
+      },
+      "detail": {
+        "title": "Userpreference"
+      },
+      "theme": "Theme",
+      "user": "User"
+    }
+  }
+}

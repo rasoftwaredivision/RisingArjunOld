@@ -1,0 +1,152 @@
+{
+    "name": "Question",
+    "fields": [
+        {
+            "fieldName": "question",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "diagram",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "option1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "option2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "option3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "option4",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "multiChoice",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "answer",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "maxMarks",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "negativeMarks",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "durationMins",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "level",
+            "fieldType": "Questionlevel",
+            "fieldValues": "BEGINNERS,MODERATE,ADVANCE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "solution",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "video",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Questionstatus",
+            "fieldValues": "CREATED,REWRITE,APPROVED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "enterprise",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "enterprise",
+            "otherEntityField": "enterprisename"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "course",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "course",
+            "otherEntityField": "course"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subject",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "subject",
+            "otherEntityField": "subjectTitle"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chapter",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "chapter",
+            "otherEntityField": "chapterTitle"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "writer",
+            "otherEntityField": "employeeId"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "approver",
+            "otherEntityField": "employeeId"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "fundamentaldetail",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "fundamentals",
+            "otherEntityField": "details",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200913172547",
+    "entityTableName": "question",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

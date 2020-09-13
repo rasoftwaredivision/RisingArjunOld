@@ -1,0 +1,30 @@
+{
+  "risingArjunApp": {
+    "studentfee": {
+      "home": {
+        "title": "Studentfees",
+        "createLabel": "Crear nuevo Studentfee",
+        "createOrEditLabel": "Crear o editar Studentfee",
+        "notFound": "No Studentfee found"
+      },
+      "created": "Un nuevo Studentfee ha sido creado con el identificador {{ param }}",
+      "updated": "Un Studentfee ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Studentfee ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Studentfee {{ id }}?"
+      },
+      "detail": {
+        "title": "Studentfee"
+      },
+      "fee": "Fee",
+      "feeCorrection": "Fee Correction",
+      "month": "Month",
+      "feeStatus": "Fee Status",
+      "remarks": "Remarks",
+      "registrationno": "Registrationno",
+      "subject": "Subject",
+      "session": "Session",
+      "teacher": "Teacher"
+    }
+  }
+}

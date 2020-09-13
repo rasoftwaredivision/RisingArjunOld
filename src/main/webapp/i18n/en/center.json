@@ -1,0 +1,30 @@
+{
+  "risingArjunApp": {
+    "center": {
+      "home": {
+        "title": "Centers",
+        "createLabel": "Create a new Center",
+        "createOrEditLabel": "Create or edit a Center",
+        "notFound": "No Center found"
+      },
+      "created": "A new Center is created with identifier {{ param }}",
+      "updated": "A Center is updated with identifier {{ param }}",
+      "deleted": "A Center is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Center {{ id }}?"
+      },
+      "detail": {
+        "title": "Center"
+      },
+      "centerCode": "Center Code",
+      "centerTitle": "Center Title",
+      "street": "Street",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "pincode": "Pincode",
+      "enterprise": "Enterprise",
+      "centerhead": "Centerhead"
+    }
+  }
+}

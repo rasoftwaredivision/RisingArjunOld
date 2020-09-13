@@ -1,0 +1,24 @@
+{
+  "risingArjunApp": {
+    "fundamentaldetail": {
+      "home": {
+        "title": "Fundamentaldetails",
+        "createLabel": "Crear nuevo Fundamentaldetail",
+        "createOrEditLabel": "Crear o editar Fundamentaldetail",
+        "notFound": "No Fundamentaldetail found"
+      },
+      "created": "Un nuevo Fundamentaldetail ha sido creado con el identificador {{ param }}",
+      "updated": "Un Fundamentaldetail ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Fundamentaldetail ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Fundamentaldetail {{ id }}?"
+      },
+      "detail": {
+        "title": "Fundamentaldetail"
+      },
+      "concept": "Concept",
+      "details": "Details",
+      "question": "Question"
+    }
+  }
+}

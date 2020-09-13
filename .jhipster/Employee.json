@@ -1,0 +1,63 @@
+{
+    "name": "Employee",
+    "fields": [
+        {
+            "fieldName": "employeeId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "jobNature",
+            "fieldType": "Jobnature",
+            "fieldValues": "PARTTIME,FULLTIME"
+        },
+        {
+            "fieldName": "bgc",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "resume",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "pan",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "accountNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bank",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ifsc",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "employee",
+            "relationshipName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200913172538",
+    "entityTableName": "employee",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

@@ -1,0 +1,11 @@
+id;jhi_create;jhi_read;jhi_update;del
+1;true;true;true;true
+2;true;true;false;true
+3;false;true;false;true
+4;true;true;true;false
+5;false;false;false;false
+6;false;true;false;true
+7;true;true;true;false
+8;true;true;false;false
+9;false;true;true;true
+10;true;true;true;false

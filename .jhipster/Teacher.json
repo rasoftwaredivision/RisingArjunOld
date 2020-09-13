@@ -1,0 +1,40 @@
+{
+    "name": "Teacher",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "teacher",
+            "relationshipName": "teacherId",
+            "otherEntityField": "employeeId",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "subject",
+            "otherEntityRelationshipName": "teachers",
+            "relationshipName": "subjects",
+            "otherEntityField": "subjectTitle",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "course",
+            "otherEntityRelationshipName": "teachers",
+            "relationshipName": "courses",
+            "otherEntityField": "course",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200913172541",
+    "entityTableName": "teacher",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

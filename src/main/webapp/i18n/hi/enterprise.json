@@ -1,0 +1,39 @@
+{
+  "risingArjunApp": {
+    "enterprise": {
+      "home": {
+        "title": "Enterprises",
+        "createLabel": "नया Enterprise बनाएँ",
+        "createOrEditLabel": "Enterprise बनाएँ या संपादित करें",
+        "notFound": "No Enterprise found"
+      },
+      "created": "एक नया Enterprise [identifier: {{ param }}] तैयार है",
+      "updated": "एक Enterprise [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Enterprise [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Enterprise [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Enterprise"
+      },
+      "abbrevation": "Abbrevation",
+      "enterprisename": "Enterprisename",
+      "natureofbusiness": "Natureofbusiness",
+      "logo": "Logo",
+      "punchline": "Punchline",
+      "mission": "Mission",
+      "vision": "Vision",
+      "principles": "Principles",
+      "email": "Email",
+      "mobile": "Mobile",
+      "landline": "Landline",
+      "fax": "Fax",
+      "plotNo": "Plot No",
+      "street": "Street",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "pincode": "Pincode"
+    }
+  }
+}

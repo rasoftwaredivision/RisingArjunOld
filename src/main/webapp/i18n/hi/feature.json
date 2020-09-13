@@ -1,0 +1,23 @@
+{
+  "risingArjunApp": {
+    "feature": {
+      "home": {
+        "title": "Features",
+        "createLabel": "नया Feature बनाएँ",
+        "createOrEditLabel": "Feature बनाएँ या संपादित करें",
+        "notFound": "No Feature found"
+      },
+      "created": "एक नया Feature [identifier: {{ param }}] तैयार है",
+      "updated": "एक Feature [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Feature [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Feature [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Feature"
+      },
+      "featureId": "Feature Id",
+      "featureDetail": "Feature Detail"
+    }
+  }
+}

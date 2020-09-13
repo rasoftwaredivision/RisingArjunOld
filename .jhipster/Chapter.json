@@ -1,0 +1,42 @@
+{
+    "name": "Chapter",
+    "fields": [
+        {
+            "fieldName": "chapterId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "chapterTitle",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "course",
+            "otherEntityRelationshipName": "chapter",
+            "relationshipName": "course",
+            "otherEntityField": "course"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subject",
+            "otherEntityRelationshipName": "chapter",
+            "relationshipName": "subject",
+            "otherEntityField": "subjectTitle"
+        }
+    ],
+    "changelogDate": "20200913172545",
+    "entityTableName": "chapter",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

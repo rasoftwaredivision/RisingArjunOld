@@ -1,0 +1,31 @@
+{
+  "risingArjunApp": {
+    "salarypayment": {
+      "home": {
+        "title": "Salarypayments",
+        "createLabel": "Crear nuevo Salarypayment",
+        "createOrEditLabel": "Crear o editar Salarypayment",
+        "notFound": "No Salarypayment found"
+      },
+      "created": "Un nuevo Salarypayment ha sido creado con el identificador {{ param }}",
+      "updated": "Un Salarypayment ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Salarypayment ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Salarypayment {{ id }}?"
+      },
+      "detail": {
+        "title": "Salarypayment"
+      },
+      "salary": "Salary",
+      "month": "Month",
+      "paid": "Paid",
+      "unpaid": "Unpaid",
+      "date": "Date",
+      "transactionId": "Transaction Id",
+      "paymentMode": "Payment Mode",
+      "remarks": "Remarks",
+      "employeeId": "Employee Id",
+      "session": "Session"
+    }
+  }
+}

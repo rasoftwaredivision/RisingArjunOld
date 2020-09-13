@@ -1,0 +1,103 @@
+{
+    "name": "Expense",
+    "fields": [
+        {
+            "fieldName": "item",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "rate",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "laborCost",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "otherExpense",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "transactionId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "expenseMode",
+            "fieldType": "Mode",
+            "fieldValues": "NEFT,UPI,CASH,DEBITCARD,NETBANKING,OTHERS"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "Expensetype",
+            "fieldValues": "FIXASSET,MARKETING,OPERATING"
+        },
+        {
+            "fieldName": "bill",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "enterprise",
+            "otherEntityRelationshipName": "expense",
+            "relationshipName": "enterprise",
+            "otherEntityField": "enterprisename"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "expense",
+            "relationshipName": "incurredBy",
+            "otherEntityField": "employeeId"
+        }
+    ],
+    "changelogDate": "20200913172544",
+    "entityTableName": "expense",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

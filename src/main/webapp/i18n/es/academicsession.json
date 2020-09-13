@@ -1,0 +1,23 @@
+{
+  "risingArjunApp": {
+    "academicsession": {
+      "home": {
+        "title": "Academicsessions",
+        "createLabel": "Crear nuevo Academicsession",
+        "createOrEditLabel": "Crear o editar Academicsession",
+        "notFound": "No Academicsession found"
+      },
+      "created": "Un nuevo Academicsession ha sido creado con el identificador {{ param }}",
+      "updated": "Un Academicsession ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Academicsession ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Academicsession {{ id }}?"
+      },
+      "detail": {
+        "title": "Academicsession"
+      },
+      "acadSessionId": "Acad Session Id",
+      "acadSession": "Acad Session"
+    }
+  }
+}

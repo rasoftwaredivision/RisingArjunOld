@@ -1,0 +1,13 @@
+{
+  "risingArjunApp": {
+    "Infosource": {
+      "null": "",
+      "LOCATIONDIRECTLY": "LOCATIONDIRECTLY",
+      "FRIENDS": "FRIENDS",
+      "BANNER": "BANNER",
+      "INTERNET": "INTERNET",
+      "PAMPHLET": "PAMPHLET",
+      "NEWSPAPER": "NEWSPAPER"
+    }
+  }
+}

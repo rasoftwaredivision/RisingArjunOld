@@ -1,0 +1,32 @@
+{
+    "name": "Centerhead",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "centerhead",
+            "relationshipName": "centerhead",
+            "otherEntityField": "employeeId",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "center",
+            "otherEntityRelationshipName": "centerhead",
+            "relationshipName": "center",
+            "otherEntityField": "centerTitle",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200913172540",
+    "entityTableName": "centerhead",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

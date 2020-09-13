@@ -1,0 +1,39 @@
+{
+  "risingArjunApp": {
+    "enterprise": {
+      "home": {
+        "title": "Enterprises",
+        "createLabel": "Crear nuevo Enterprise",
+        "createOrEditLabel": "Crear o editar Enterprise",
+        "notFound": "No Enterprise found"
+      },
+      "created": "Un nuevo Enterprise ha sido creado con el identificador {{ param }}",
+      "updated": "Un Enterprise ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Enterprise ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Enterprise {{ id }}?"
+      },
+      "detail": {
+        "title": "Enterprise"
+      },
+      "abbrevation": "Abbrevation",
+      "enterprisename": "Enterprisename",
+      "natureofbusiness": "Natureofbusiness",
+      "logo": "Logo",
+      "punchline": "Punchline",
+      "mission": "Mission",
+      "vision": "Vision",
+      "principles": "Principles",
+      "email": "Email",
+      "mobile": "Mobile",
+      "landline": "Landline",
+      "fax": "Fax",
+      "plotNo": "Plot No",
+      "street": "Street",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "pincode": "Pincode"
+    }
+  }
+}

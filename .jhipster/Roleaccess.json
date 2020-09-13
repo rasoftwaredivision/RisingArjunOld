@@ -1,0 +1,47 @@
+{
+    "name": "Roleaccess",
+    "fields": [
+        {
+            "fieldName": "create",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "read",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "update",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "del",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "jhiauthority",
+            "otherEntityRelationshipName": "roleaccess",
+            "relationshipName": "role",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "feature",
+            "otherEntityRelationshipName": "roleaccess",
+            "relationshipName": "feature",
+            "otherEntityField": "featureDetail"
+        }
+    ],
+    "changelogDate": "20200913172526",
+    "entityTableName": "roleaccess",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

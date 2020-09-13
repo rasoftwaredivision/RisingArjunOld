@@ -1,0 +1,25 @@
+{
+  "risingArjunApp": {
+    "scholarship": {
+      "home": {
+        "title": "Scholarships",
+        "createLabel": "Create a new Scholarship",
+        "createOrEditLabel": "Create or edit a Scholarship",
+        "notFound": "No Scholarship found"
+      },
+      "created": "A new Scholarship is created with identifier {{ param }}",
+      "updated": "A Scholarship is updated with identifier {{ param }}",
+      "deleted": "A Scholarship is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Scholarship {{ id }}?"
+      },
+      "detail": {
+        "title": "Scholarship"
+      },
+      "minMarks": "Min Marks",
+      "percent": "Percent",
+      "enterprise": "Enterprise",
+      "session": "Session"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "risingArjunApp": {
+    "studentsubject": {
+      "home": {
+        "title": "Studentsubjects",
+        "createLabel": "Crear nuevo Studentsubject",
+        "createOrEditLabel": "Crear o editar Studentsubject",
+        "notFound": "No Studentsubject found"
+      },
+      "created": "Un nuevo Studentsubject ha sido creado con el identificador {{ param }}",
+      "updated": "Un Studentsubject ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Studentsubject ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Studentsubject {{ id }}?"
+      },
+      "detail": {
+        "title": "Studentsubject"
+      },
+      "month": "Month",
+      "registrationno": "Registrationno",
+      "session": "Session",
+      "subjects": "Subjects",
+      "course": "Course"
+    }
+  }
+}

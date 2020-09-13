@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="autoIncrement" value="true"/>
+
+    <!--
+        Added the entity Student.
+    -->
+    <changeSet id="20200913172530-1" author="jhipster">
+        <createTable tableName="student">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="student_reg_id" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_student_student_reg_id" />
+            </column>
+
+            <column name="registration_form" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="registration_form_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="parent_mob_no_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="parent_mob_no_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="parent_email_id" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="student_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="leaving_reason" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="info_source" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_student_user_id" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="20200913172530-1-relations" author="jhipster">
+
+        <createTable tableName="student_course">
+            <column name="course_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="student_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="student_id, course_id" tableName="student_course"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20200913172530-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/data/student.csv"
+                  separator=";"
+                  tableName="student">
+            <column name="id" type="numeric"/>
+            <column name="student_reg_id" type="string"/>
+            <column name="registration_form" type="blob"/>
+            <column name="registration_form_content_type" type="string"/>
+            <column name="parent_mob_no_1" type="string"/>
+            <column name="parent_mob_no_2" type="string"/>
+            <column name="parent_email_id" type="string"/>
+            <column name="student_status" type="string"/>
+            <column name="leaving_reason" type="string"/>
+            <column name="info_source" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

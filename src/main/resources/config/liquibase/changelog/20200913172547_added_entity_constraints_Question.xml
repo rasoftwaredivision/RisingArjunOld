@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Question.
+    -->
+    <changeSet id="20200913172547-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="enterprise_id"
+                                 baseTableName="question"
+                                 constraintName="fk_question_enterprise_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="enterprise"/>
+
+        <addForeignKeyConstraint baseColumnNames="course_id"
+                                 baseTableName="question"
+                                 constraintName="fk_question_course_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="course"/>
+
+        <addForeignKeyConstraint baseColumnNames="subject_id"
+                                 baseTableName="question"
+                                 constraintName="fk_question_subject_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subject"/>
+
+        <addForeignKeyConstraint baseColumnNames="chapter_id"
+                                 baseTableName="question"
+                                 constraintName="fk_question_chapter_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chapter"/>
+
+        <addForeignKeyConstraint baseColumnNames="writer_id"
+                                 baseTableName="question"
+                                 constraintName="fk_question_writer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employee"/>
+
+        <addForeignKeyConstraint baseColumnNames="approver_id"
+                                 baseTableName="question"
+                                 constraintName="fk_question_approver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employee"/>
+
+        <addForeignKeyConstraint baseColumnNames="question_id"
+                                 baseTableName="question_fundamentals"
+                                 constraintName="fk_question_fundamentals_question_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="question"/>
+
+        <addForeignKeyConstraint baseColumnNames="fundamentals_id"
+                                 baseTableName="question_fundamentals"
+                                 constraintName="fk_question_fundamentals_fundamentals_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fundamentaldetail"/>
+        
+    </changeSet>
+</databaseChangeLog>

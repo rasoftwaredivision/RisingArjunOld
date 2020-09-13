@@ -1,0 +1,31 @@
+{
+  "risingArjunApp": {
+    "teachershare": {
+      "home": {
+        "title": "Teachershares",
+        "createLabel": "नया Teachershare बनाएँ",
+        "createOrEditLabel": "Teachershare बनाएँ या संपादित करें",
+        "notFound": "No Teachershare found"
+      },
+      "created": "एक नया Teachershare [identifier: {{ param }}] तैयार है",
+      "updated": "एक Teachershare [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Teachershare [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Teachershare [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Teachershare"
+      },
+      "sharePercent": "Share Percent",
+      "plannedClasses": "Planned Classes",
+      "actualClasses": "Actual Classes",
+      "shareCorrection": "Share Correction",
+      "share": "Share",
+      "month": "Month",
+      "remarks": "Remarks",
+      "teacherId": "Teacher Id",
+      "subject": "Subject",
+      "session": "Session"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "risingArjunApp": {
+    "subjectsbasefee": {
+      "home": {
+        "title": "Subjectsbasefees",
+        "createLabel": "Crear nuevo Subjectsbasefee",
+        "createOrEditLabel": "Crear o editar Subjectsbasefee",
+        "notFound": "No Subjectsbasefee found"
+      },
+      "created": "Un nuevo Subjectsbasefee ha sido creado con el identificador {{ param }}",
+      "updated": "Un Subjectsbasefee ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Subjectsbasefee ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Subjectsbasefee {{ id }}?"
+      },
+      "detail": {
+        "title": "Subjectsbasefee"
+      },
+      "baseFee": "Base Fee",
+      "course": "Course",
+      "enterprise": "Enterprise",
+      "session": "Session"
+    }
+  }
+}

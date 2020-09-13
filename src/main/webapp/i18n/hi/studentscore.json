@@ -1,0 +1,26 @@
+{
+  "risingArjunApp": {
+    "studentscore": {
+      "home": {
+        "title": "Studentscores",
+        "createLabel": "नया Studentscore बनाएँ",
+        "createOrEditLabel": "Studentscore बनाएँ या संपादित करें",
+        "notFound": "No Studentscore found"
+      },
+      "created": "एक नया Studentscore [identifier: {{ param }}] तैयार है",
+      "updated": "एक Studentscore [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Studentscore [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Studentscore [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Studentscore"
+      },
+      "answer": "Answer",
+      "score": "Score",
+      "date": "Date",
+      "student": "Student",
+      "question": "Question"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+    "name": "Studentfee",
+    "fields": [
+        {
+            "fieldName": "fee",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "feeCorrection",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "month",
+            "fieldType": "Month",
+            "fieldValues": "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC"
+        },
+        {
+            "fieldName": "feeStatus",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "student",
+            "otherEntityRelationshipName": "studentfee",
+            "relationshipName": "registrationno",
+            "otherEntityField": "studentRegId",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subject",
+            "otherEntityRelationshipName": "studentfee",
+            "relationshipName": "subject",
+            "otherEntityField": "subjectTitle"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "academicsession",
+            "otherEntityRelationshipName": "studentfee",
+            "relationshipName": "session",
+            "otherEntityField": "acadSession"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "studentfee",
+            "relationshipName": "teacher",
+            "otherEntityField": "employeeId"
+        }
+    ],
+    "changelogDate": "20200913172537",
+    "entityTableName": "studentfee",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

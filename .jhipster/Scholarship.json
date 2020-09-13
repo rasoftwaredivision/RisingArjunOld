@@ -1,0 +1,39 @@
+{
+    "name": "Scholarship",
+    "fields": [
+        {
+            "fieldName": "minMarks",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "percent",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "enterprise",
+            "otherEntityRelationshipName": "scholarship",
+            "relationshipName": "enterprise",
+            "otherEntityField": "enterprisename"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "academicsession",
+            "otherEntityRelationshipName": "scholarship",
+            "relationshipName": "session",
+            "otherEntityField": "acadSession"
+        }
+    ],
+    "changelogDate": "20200913172536",
+    "entityTableName": "scholarship",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

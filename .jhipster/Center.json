@@ -1,0 +1,80 @@
+{
+    "name": "Center",
+    "fields": [
+        {
+            "fieldName": "centerCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "unique",
+                "required"
+            ]
+        },
+        {
+            "fieldName": "centerTitle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "unique",
+                "required"
+            ]
+        },
+        {
+            "fieldName": "street",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "City",
+            "fieldValues": "DEHRADUN,DELHI,GURGAON,LONI,TEHRI",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "state",
+            "fieldType": "State",
+            "fieldValues": "DELHI,HARYANA,MADHYAPRADESH,UTTRAKHAND,UTTARPRADESH",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "Country",
+            "fieldValues": "INDIA,AUSTRALIA,USA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pincode",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "enterprise",
+            "otherEntityRelationshipName": "center",
+            "relationshipName": "enterprise",
+            "otherEntityField": "enterprisename"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "centerhead",
+            "otherEntityRelationshipName": "center",
+            "relationshipName": "centerhead",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200913172539",
+    "entityTableName": "center",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

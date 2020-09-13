@@ -1,0 +1,31 @@
+{
+  "risingArjunApp": {
+    "userdetail": {
+      "home": {
+        "title": "Userdetails",
+        "createLabel": "Create a new Userdetail",
+        "createOrEditLabel": "Create or edit a Userdetail",
+        "notFound": "No Userdetail found"
+      },
+      "created": "A new Userdetail is created with identifier {{ param }}",
+      "updated": "A Userdetail is updated with identifier {{ param }}",
+      "deleted": "A Userdetail is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Userdetail {{ id }}?"
+      },
+      "detail": {
+        "title": "Userdetail"
+      },
+      "mobileNo": "Mobile No",
+      "dob": "Dob",
+      "houseNo": "House No",
+      "street": "Street",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "pincode": "Pincode",
+      "user": "User",
+      "enterprise": "Enterprise"
+    }
+  }
+}

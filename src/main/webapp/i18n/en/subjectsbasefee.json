@@ -1,0 +1,25 @@
+{
+  "risingArjunApp": {
+    "subjectsbasefee": {
+      "home": {
+        "title": "Subjectsbasefees",
+        "createLabel": "Create a new Subjectsbasefee",
+        "createOrEditLabel": "Create or edit a Subjectsbasefee",
+        "notFound": "No Subjectsbasefee found"
+      },
+      "created": "A new Subjectsbasefee is created with identifier {{ param }}",
+      "updated": "A Subjectsbasefee is updated with identifier {{ param }}",
+      "deleted": "A Subjectsbasefee is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Subjectsbasefee {{ id }}?"
+      },
+      "detail": {
+        "title": "Subjectsbasefee"
+      },
+      "baseFee": "Base Fee",
+      "course": "Course",
+      "enterprise": "Enterprise",
+      "session": "Session"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+    "name": "Student",
+    "fields": [
+        {
+            "fieldName": "studentRegId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "registrationForm",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "parentMobNo1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "parentMobNo2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "parentEmailId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "studentStatus",
+            "fieldType": "Studentstatus",
+            "fieldValues": "GRADUATED,JOINED,LEFT"
+        },
+        {
+            "fieldName": "leavingReason",
+            "fieldType": "Leavingreason",
+            "fieldValues": "NA,DISTANCEFACTOR,UNHAPPYPHYSICS,UNHAPPYMATHS,UNHAPPYBIO,UNHAPPYCHEMISTRY,UNHAPPYMANAGEMENT,HIGHFEES,CLASSESOVERLAP,COURSECOMPLETED,BREAKEXAM,BREAKHOLIDAY,PERSONALREASON"
+        },
+        {
+            "fieldName": "infoSource",
+            "fieldType": "Infosource",
+            "fieldValues": "LOCATIONDIRECTLY,FRIENDS,BANNER,INTERNET,PAMPHLET,NEWSPAPER"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "student",
+            "relationshipName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "course",
+            "otherEntityRelationshipName": "student",
+            "relationshipName": "course",
+            "otherEntityField": "course",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200913172530",
+    "entityTableName": "student",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

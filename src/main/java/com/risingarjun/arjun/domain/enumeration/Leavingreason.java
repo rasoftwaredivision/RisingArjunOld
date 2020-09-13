@@ -1,0 +1,8 @@
+package com.risingarjun.arjun.domain.enumeration;
+
+/**
+ * The Leavingreason enumeration.
+ */
+public enum Leavingreason {
+    NA, DISTANCEFACTOR, UNHAPPYPHYSICS, UNHAPPYMATHS, UNHAPPYBIO, UNHAPPYCHEMISTRY, UNHAPPYMANAGEMENT, HIGHFEES, CLASSESOVERLAP, COURSECOMPLETED, BREAKEXAM, BREAKHOLIDAY, PERSONALREASON
+}

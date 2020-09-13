@@ -1,0 +1,81 @@
+{
+    "name": "Teachershare",
+    "fields": [
+        {
+            "fieldName": "sharePercent",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "max"
+            ],
+            "fieldValidateRulesMax": 100
+        },
+        {
+            "fieldName": "plannedClasses",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "actualClasses",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "shareCorrection",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "share",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "month",
+            "fieldType": "Month",
+            "fieldValues": "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "teachershare",
+            "relationshipName": "teacherId",
+            "otherEntityField": "employeeId"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subject",
+            "otherEntityRelationshipName": "teachershare",
+            "relationshipName": "subject",
+            "otherEntityField": "subjectTitle"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "academicsession",
+            "otherEntityRelationshipName": "teachershare",
+            "relationshipName": "session",
+            "otherEntityField": "acadSessionId"
+        }
+    ],
+    "changelogDate": "20200913172542",
+    "entityTableName": "teachershare",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

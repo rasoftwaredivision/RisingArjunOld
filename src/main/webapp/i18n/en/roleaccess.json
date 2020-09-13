@@ -1,0 +1,27 @@
+{
+  "risingArjunApp": {
+    "roleaccess": {
+      "home": {
+        "title": "Roleaccesses",
+        "createLabel": "Create a new Roleaccess",
+        "createOrEditLabel": "Create or edit a Roleaccess",
+        "notFound": "No Roleaccess found"
+      },
+      "created": "A new Roleaccess is created with identifier {{ param }}",
+      "updated": "A Roleaccess is updated with identifier {{ param }}",
+      "deleted": "A Roleaccess is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Roleaccess {{ id }}?"
+      },
+      "detail": {
+        "title": "Roleaccess"
+      },
+      "create": "Create",
+      "read": "Read",
+      "update": "Update",
+      "del": "Del",
+      "role": "Role",
+      "feature": "Feature"
+    }
+  }
+}

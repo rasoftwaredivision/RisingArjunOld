@@ -1,0 +1,35 @@
+{
+  "risingArjunApp": {
+    "discount": {
+      "home": {
+        "title": "Discounts",
+        "createLabel": "नया Discount बनाएँ",
+        "createOrEditLabel": "Discount बनाएँ या संपादित करें",
+        "notFound": "No Discount found"
+      },
+      "created": "एक नया Discount [identifier: {{ param }}] तैयार है",
+      "updated": "एक Discount [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Discount [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Discount [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Discount"
+      },
+      "subject2": "Subject 2",
+      "subject3": "Subject 3",
+      "subject4": "Subject 4",
+      "subject5": "Subject 5",
+      "subject6": "Subject 6",
+      "subject7": "Subject 7",
+      "subject8": "Subject 8",
+      "quarterly": "Quarterly",
+      "halfYearly": "Half Yearly",
+      "annually": "Annually",
+      "sibling": "Sibling",
+      "referral": "Referral",
+      "enterprise": "Enterprise",
+      "session": "Session"
+    }
+  }
+}

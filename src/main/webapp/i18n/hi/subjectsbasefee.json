@@ -1,0 +1,25 @@
+{
+  "risingArjunApp": {
+    "subjectsbasefee": {
+      "home": {
+        "title": "Subjectsbasefees",
+        "createLabel": "नया Subjectsbasefee बनाएँ",
+        "createOrEditLabel": "Subjectsbasefee बनाएँ या संपादित करें",
+        "notFound": "No Subjectsbasefee found"
+      },
+      "created": "एक नया Subjectsbasefee [identifier: {{ param }}] तैयार है",
+      "updated": "एक Subjectsbasefee [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Subjectsbasefee [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Subjectsbasefee [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Subjectsbasefee"
+      },
+      "baseFee": "Base Fee",
+      "course": "Course",
+      "enterprise": "Enterprise",
+      "session": "Session"
+    }
+  }
+}

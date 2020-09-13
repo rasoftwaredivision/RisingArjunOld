@@ -1,0 +1,22 @@
+{
+  "risingArjunApp": {
+    "jhiauthority": {
+      "home": {
+        "title": "Jhiauthorities",
+        "createLabel": "Create a new Jhiauthority",
+        "createOrEditLabel": "Create or edit a Jhiauthority",
+        "notFound": "No Jhiauthority found"
+      },
+      "created": "A new Jhiauthority is created with identifier {{ param }}",
+      "updated": "A Jhiauthority is updated with identifier {{ param }}",
+      "deleted": "A Jhiauthority is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Jhiauthority {{ id }}?"
+      },
+      "detail": {
+        "title": "Jhiauthority"
+      },
+      "name": "Name"
+    }
+  }
+}
