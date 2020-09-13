@@ -87,11 +87,14 @@ enum State{
 	DELHI, HARYANA, UTTRAKHAND, MADHYAPRADESH
 }
 
+enum Country{
+	INDIA
+}
 /*
 4. UserDetails:
-id, userId, enterprise, mobileNo,	DOB, 		houseNo, streetNo,	city, 	state, 	pincode
-10, 1, 		30,			999999, 	07-07-90, 	T1-801,	Taksila heights,Gurgaon, Haryana, 122001
-12, 12, 	31, 		88888,	07-07-89, 	T2,	Taksila heights,Gurgaon, Haryana, 122001
+id, userId, enterprise, mobileNo,	DOB, 		houseNo, streetNo,	city, 	state, Country,	pincode
+10, 1, 		30,			999999, 	07-07-90, 	T1-801,	Taksila heights,Gurgaon, Haryana, INDIA, 122001
+12, 12, 	31, 		88888,	07-07-89, 	T2,	Taksila heights,Gurgaon, Haryana, INDIA, 122001
 */
 
 entity UserDetails{
@@ -101,6 +104,7 @@ entity UserDetails{
 	streetNo Integer	
 	city City required
 	state State required
+	country Country required
 	pincode Integer
 }
 
@@ -283,10 +287,10 @@ entity Employees{
 }
 /*
 17. centers:
-id, enterprise, centerCode, centerTitle,	streetno,					city,	state,	pincode
-1,  20, GGN_SEC3, 	Gurgaon Sec3, 	Shop No 13, Sector 3 		Gurgaon,Haryana, 122001
-2,  30, GGN_SEC4, 	Gurgaon Sec4, 	Shop No 13-14, Sector 4, 	Gurgaon,Haryana, 122001
-3,  35, DDN_SUM, 	Ddun Sumannagar,HNo 37/C, Suman Nagar 		Dehradun,Uttrakhand, 248001
+id, enterprise, centerCode, centerTitle,	streetno,					city,	state,	country, pincode
+1,  20, GGN_SEC3, 	Gurgaon Sec3, 	Shop No 13, Sector 3 		Gurgaon,Haryana, INDIA, 122001
+2,  30, GGN_SEC4, 	Gurgaon Sec4, 	Shop No 13-14, Sector 4, 	Gurgaon,Haryana, INDIA, 122001
+3,  35, DDN_SUM, 	Ddun Sumannagar,HNo 37/C, Suman Nagar 		Dehradun,Uttrakhand, INDIA, 248001
 */
 entity Centers{
 	centerCode String unique required	
@@ -294,6 +298,7 @@ entity Centers{
 	streetNo Integer	
 	city City required
 	state State required
+	country Country required
 	pincode Integer 
 }
 /*
@@ -325,28 +330,28 @@ entity TeachersShare{
 	plannedClasses Integer required
 	actualClasses Integer required
 	shareCorrection Integer
-	month Month
+	month Month required
 	remarks String
 }
-
-/*
-21. salariesPayment:
-id, employeeId, salary,       paid, 	unpaid,	date, 		transactionId, mode,	remarks
-1.  GGN002,	15000,	      13000,    2000,	31-Aug-20,      IMPS00002,	NEFT,	200 balance
-2.  GGN002,	5000,	      5000,     0,	31-Aug-20,      IMPS00003,	Paytm,	paid
-*/
 
 enum Mode{
 	NEFT, UPI, CASH, DEBITCARD, NETBANKING, OTHERS
 }
 
+/*
+21. salariesPayment:
+id, employeeId, salary, adacemicSession, month,   paid, 	unpaid,		date, 		transactionId, mode,	remarks
+1.  GGN002,		15000,	2020-21, 		JUL,	  13000,    2000,	31-Aug-20,      IMPS00002,	NEFT,		200 balance
+2.  GGN002,		5000,	2020-21, 		JUL,	  5000,     0,		31-Aug-20,      IMPS00003,	Paytm,		paid
+*/
 entity SalariesPayment{
 	salary Integer required min(0)   
+	month Month 	required	
 	paid Integer 	min(0) required
 	unpaid Integer	min(0) required
 	date LocalDate 	required	
 	transactionId String required
-	paymentMode Mode
+	paymentMode Mode required
 	remarks String
 }
 /*
@@ -411,22 +416,25 @@ enum Fundamentals{
 }
 
 /*FundamentalsDetails:
-Id, concept, subject, details
-1,	BASIC_PROPOTIONALITY_THEROEM, MA, https://risingarjun.com/resources/BASIC_PROPOTIONALITY_THEROEM	
+Id, subject, 	concept,  						details
+1,	MA,			BASIC_PROPOTIONALITY_THEROEM,  https://risingarjun.com/resources/BASIC_PROPOTIONALITY_THEROEM	
 * 
 */
-entity FundamentalsDetails{	 
+entity FundamentalsDetails{
 	concept Fundamentals
 	details String
 }
 
 /*
 26. questions:
-id, enterprise, courseId,subjectId,chapterId, question,	option1,option2,option3,option4, answer, fundamentals, maxMarks,negativeMarks, durationMins, level
-1, 	30,			3,			MA,		ADD,		29+39	48,		58,		68,			78,		68,		SAS, 	4,		1,		5,	BEGINNERS
-2, 	20,			3,			MA,		ADD,		19+39	48,		58,		68,			78,		58,		MPT, 4,		1,		4,	MODERATE
 
-solution, video, 							 creator, approver, status
+    Questions{} to Employees,
+    Questions{approver} to Employees,
+id, enterprisename, courseId,subjectId,chapterId, question,diagram,	option1,option2,option3,option4, multiChoice,answer, fundamentals, maxMarks,negativeMarks, durationMins, level
+1, 	30,			3,			MA,		ADD,		29+39,	qdiagram,	48,		58,		68,			78,		0,		68,		SAS, 			4,		1,			5,	BEGINNERS
+2, 	20,			3,			MA,		ADD,		19+39,	somediagram,48,		58,		68,			78,		1,	58,		MPT, 			4,		1,			4,	MODERATE
+
+solution, video, 							 writer, approver, status
 xxxx, https://risingarjun.com/resources/xxxx, 12,      13, 		APPROVED 
 */
 entity Questions{
@@ -436,6 +444,7 @@ entity Questions{
 	option2 String	
 	option3 String	
 	option4 String 	
+	multiChoice Boolean required
 	answer String required
 	maxMarks Integer required
 	negativeMarks Integer
@@ -463,22 +472,36 @@ enum NatureOfBusiness{
 
 /* 
 Enterprise:
-id, abbrevation, enterprisename, admin,logo, punchline, mission, vision, guidingPrinciples, address,email,mobile,landline,fax
-10, RisingArjun, Rising Arjun, 12, logoImage, punchline, somemission, someprinciples, someaddress, nancy@gmail.com, 9999, 8888
-20, NANCYCLASSES, Nancy Classes, 12, logoImage, punchline, somemission, someprinciples, someaddress, nancy@gmail.com, 9999, 8888
-30, JATINCOURSE, JATIN Coaching, 12, logoImage, punchline, somemission, someprinciples, someaddress, nancy@gmail.com, 9999, 8888
+id, abbrevation, enterprisename, logo, punchline, mission, vision, principles, email,mobile,landline,fax, plotNo, streetNo,	city, 	state,  country,	pincode
+10, RisingArjun, Rising Arjun,  logoImage, punchline, somemission, someprinciples, nancy@gmail.com, 9999, 8888,  	T1-801,	Kataria Market Sec37C,Gurgaon, Haryana, INDIA,122001
+20, NANCYCLASSES, Nancy Classes, logoImage, punchline, somemission, someprinciples, nancy@gmail.com, 9999, 8888,  	T1-801,	Kataria Market Sec37C,,Gurgaon, Haryana, INDIA, 122001
+30, JATINCOURSE, JATIN Coaching, logoImage, punchline, somemission, someprinciples, nancy@gmail.com, 9999, 8888,  	T1-801,	Kataria Market Sec37C,,Gurgaon, Haryana, INDIA, 122001
 */ 
 entity Enterprise{
-	abbrevation String required minlength(3)  maxlength(20),
-	enterprisename String required minlength(3)  maxlength(64),
-	natureofbusiness NatureOfBusiness
+	abbrevation 	String required minlength(3)  maxlength(20)
+	enterprisename 	String required minlength(3)  maxlength(64)
+	natureofbusiness NatureOfBusiness required
+	logo			ImageBlob
+	punchline 		String minlength(3)  maxlength(1024)
+	mission 		String minlength(3)  maxlength(1024)
+	vision 			String minlength(3)  maxlength(1024)
+	principles 		String minlength(3)  maxlength(1024)
+	email 			String pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+	mobile 			String required
+	landline 		String
+	fax 			String
+	plotNo			String required
+	city 			City required
+	state 			State required
+	country 		Country required
+	pincode 		Integer
 }
 
 /* 
 EnterpriseSettings:
-id, enterpriseid, theme, foreground, background,  disclaimer, policy, copyrights,termsOfUsage, 
-1, 	10,			xxx,		xxx, 	xxxx, 		 somedisclaimer, somePolicyDoc, someCopyright, terms
-2, 	20,			xxrx,		xxx, 	xxxx, 		 somedisclaimer, somePolicyDoc, someCopyright, terms
+id, enterpriseid, admin, theme, foreground, background,  disclaimer, policy, copyrights,termsOfUsage, 
+1, 	10,			12, 	xxx,		xxx, 	xxxx, 		 somedisclaimer, somePolicyDoc, someCopyright, terms
+2, 	20,			13, 	xxrx,		xxx, 	xxxx, 		 somedisclaimer, somePolicyDoc, someCopyright, terms
 */ 
 entity EnterpriseSettings{
 	theme String
@@ -499,54 +522,56 @@ relationship OneToOne{
 	StudentFees{registrationno(studentRegId)} to Students,
 	Employees{user(login)} to User,
    	CenterHead{centerhead(employeeId)} to Employees,
-   	Teachers{teacher(employeeId)} to Employees,
-   	
-   	
+   	Teachers{teacherId(employeeId)} to Employees,
+   	EnterpriseSettings{admin(login)} to User   	
 }
 
 relationship ManyToMany{
-    Students{course(course)} to Courses{Students},
+    Students{course(course)} to Courses{Students},    
     StudentsSubjects{subjects(subjectTitle)} to Subjects{studentsubject},
-    StudentsSubjects{course(course)} to Courses{studentsubjects},
+    StudentsSubjects{course(course)} to Courses{studentsubjects},    
     CenterHead{center(centerTitle)} to Centers{centerhead},    
     Teachers{subjects(subjectTitle)} to Subjects{teachers},    
-    Teachers{courses(course)} to Courses{teachers}
+    Teachers{courses(course)} to Courses{teachers},    
+    Questions{fundamentals(details)} to FundamentalsDetails{Questions}
 }
 
 relationship ManyToOne{
 	RoleAccess{role(name)} to Jhiauthority,
 	RoleAccess{feature(featureDetail)} to Features,
-	StudentsSubjects{session(acadSession)} to AcademicSessions,	
-	StudentsSubjects{registrationno(studentRegId)} to Students,
+	UserDetails{enterprise(enterprisename)} to Enterprise,
+	StudentsSubjects{registrationno(studentRegId)} to Students,	
+	StudentsSubjects{session(acadSession)} to AcademicSessions,		
 	SubjectsBaseFee{course(course)} to Courses,
-	SubjectsBaseFee{session(acadSession)} to AcademicSessions,
+	SubjectsBaseFee{enterprise(enterprisename)} to Enterprise,
+	SubjectsBaseFee{session(acadSession)} to AcademicSessions,	
+	Discounts{enterprise(enterprisename)} to Enterprise,
 	Discounts{session(acadSession)} to AcademicSessions,
+	Scholarships{enterprise(enterprisename)} to Enterprise,	
 	Scholarships{session(acadSession)} to AcademicSessions,	
-    StudentFees{subject(subjectTitle)} to Subjects,    
+    StudentFees{subject(subjectTitle)} to Subjects,        
     StudentFees{session(acadSession)} to AcademicSessions,    
     StudentFees{teacher(employeeId)} to Employees,
-    TeachersShare{teacher(employeeId)} to Employees,        
+    Centers{enterprise(enterprisename)} to Enterprise,    
+    TeachersShare{teacherId(employeeId)} to Employees,        
     TeachersShare{subject(subjectTitle)} to Subjects,    
     TeachersShare{course(course)} to Courses,    
-    TeachersShare{session(acadSessionId)} to AcademicSessions,
-    SalariesPayment{employee(employeeId)} to  Employees,    
-    Expenses{incurredBy(employeeId)} to Employees,    
-	Chapters{course(course)} to Courses,
-	Chapters{subject(subjectTitle)} to Subjects,    
-	Questions{course(course)} to Courses,	
-    Questions{subject(subjectTitle)} to Subjects,    
-    Questions{chapter(chapterTitle)} to Chapters,
-    Questions{questionsetter} to Employees
-    StudentScore{student(studentRegId)} to Students,
-    StudentScore{questionId} to Questions	,
-
-    UserDetails{enterprise(enterprisename)} to Enterprise,
-    Discounts{enterprise(enterprisename)} to Enterprise,
-    Scholarships{enterprise(enterprisename)} to Enterprise,
-    Centers{enterprise(enterprisename)} to Enterprise,
+    TeachersShare{session(acadSessionId)} to AcademicSessions,    
+    SalariesPayment{employeeId(employeeId)} to  Employees,    
+    SalariesPayment{session(acadSessionId)} to AcademicSessions,    
     Expenses{enterprise(enterprisename)} to Enterprise,
+    Expenses{incurredBy(employeeId)} to Employees,        
+	Chapters{course(course)} to Courses,
+	Chapters{subject(subjectTitle)} to Subjects,  	  
     Questions{enterprise(enterprisename)} to Enterprise,
-    EnterpriseSettings{enterprise(abbrevation)} to Enterprise
+	Questions{course(course)} to Courses,	
+    Questions{subject(subjectTitle)} to Subjects,   
+    Questions{chapter(chapterTitle)} to Chapters,
+    Questions{writer} to Employees,
+    Questions{approver} to Employees,    
+    StudentScore{student(studentRegId)} to Students,	
+    StudentScore{questionId} to Questions,
+    EnterpriseSettings{enterprise(enterprisename)} to Enterprise
 }
 
 // =======
@@ -557,7 +582,7 @@ relationship ManyToOne{
 
 //service UserDetails, Students, StudentFees, TeachersShare, SalariesPayment, Expenses, Questions, StudentScore with serviceClass
 
-paginate UserDetails, Students, StudentFees, TeachersShare, SalariesPayment, Expenses, Questions, StudentScore with pagination
+paginate UserDetails, Students, StudentFees, TeachersShare, SalariesPayment, Expenses, Questions, StudentScore, Enterprise with pagination
 
 
 dto * with mapstruct
